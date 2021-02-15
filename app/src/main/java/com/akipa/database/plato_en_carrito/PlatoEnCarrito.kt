@@ -20,3 +20,11 @@ data class PlatoEnCarrito(
     @Ignore
     val cantidadUI = cantidad.toString()
 }
+
+fun List<PlatoEnCarrito>.obtenerCosteTotal(): Double {
+    var total = 0.0
+    map {
+        total += it.precio * it.cantidad
+    }
+    return total
+}

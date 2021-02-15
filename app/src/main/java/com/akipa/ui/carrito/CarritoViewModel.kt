@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
+import com.akipa.database.plato_en_carrito.obtenerCosteTotal
 import com.akipa.utils.Constantes
 import kotlinx.coroutines.*
 
@@ -18,6 +19,13 @@ class CarritoViewModel(application: Application) : AndroidViewModel(application)
      * Lista de todos los platos agregados al carrito
      */
     val platosEnCarrito = database.carritoDao.obtenerTodosPlatosDelCarrito()
+
+    private val _total = Transformations.map(platosEnCarrito) {
+        it.obtenerCosteTotal()
+    }
+    val total = Transformations.map(_total) {
+        "S/" + "%.2f".format(it)
+    }
 
     fun incrementarCantidadPlato(platoEnCarrito: PlatoEnCarrito) {
 
