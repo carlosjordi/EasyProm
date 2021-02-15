@@ -1,8 +1,6 @@
 package com.akipa.network
 
-import com.akipa.dto.ListadoPlatos
-import com.akipa.dto.PersonalAutorizado
-import com.akipa.dto.PlatoRegistradoResponse
+import com.akipa.dto.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -42,4 +40,21 @@ interface AkipaApiService {
     @FormUrlEncoded
     @POST("eliminarPlato.php")
     fun eliminarPlatoAsync(@Field("id") id: Int): Deferred<PlatoRegistradoResponse>
+
+    @FormUrlEncoded
+    @POST("registrarPedidoRecojoEnTienda.php")
+    fun registrarPedidoRecojoEnTiendaAsync(
+        @Field("id_local") idLocal: Int,
+        @Field("id_solicitante") idSolicitante: String,
+        @Field("fecha_recojo") fechaRecojo: String,
+        @Field("hora_recojo") horaRecojo: String
+    ): Deferred<RecojoEnTiendaResponse>
+
+    @FormUrlEncoded
+    @POST("agregarPlatoADetalle.php")
+    fun agregarPlatoADetalleAsync(
+        @Field("id_pedido") idPedido: Int,
+        @Field("id_plato") idPlato: Int,
+        @Field("cantidad") cantidad: Int
+    ): Deferred<PlatoAgregadoADetalleResponse>
 }
