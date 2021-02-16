@@ -10,6 +10,8 @@ object Constantes {
     const val PLATO_ELIMINADO_MENSAJE_EXITOSO = "Plato Eliminado"
     const val IMAGEN_NO_ACTUALIZADA = "Imagen no fue actualizada"
 
+    const val PEDIDO_REGISTRADO_MENSAJE_EXITOSO = "Pedido Registrado"
+
     /**
      * Mantendrá info del personal logueado actualmente.
      * Si es que su valor es nulo significa que no hay sesión
