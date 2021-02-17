@@ -40,6 +40,8 @@
     <string name="referencia_helper_text">Puede indicar una referencia (opcional)</string>
     <string name="hint_referencia">Referencia</string>
 
+
+
     <string-array name="akipa_locales">
         <item>Salaverry</item>
         <item>Chacarilla</item>

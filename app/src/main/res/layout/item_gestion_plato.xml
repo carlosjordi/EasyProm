@@ -79,7 +79,7 @@
                 android:id="@+id/plato_editar_boton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="4dp"
                 android:contentDescription="@string/cd_boton_editar_plato"
                 android:onClick="@{() -> listener.onEditarClick(plato)}"
                 android:src="@drawable/ic_edit"
