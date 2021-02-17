@@ -65,4 +65,9 @@ interface AkipaApiService {
         @Field("id_plato") idPlato: Int,
         @Field("cantidad") cantidad: Int
     ): Deferred<PlatoAgregadoADetalleResponse>
+
+    @GET("misPedidos.php")
+    fun obtenerMisPedidosAsync(
+        @Query("id_solicitante") idSolicitante: String
+    ): Deferred<MisPedidosResponse>
 }
