@@ -3,6 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="pedido"
+            type="com.akipa.dto.SolicitarCabecerasResponseItem" />
+
+        <variable
+            name="listener"
+            type="com.akipa.ui.pedidos.PedidosListener" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
