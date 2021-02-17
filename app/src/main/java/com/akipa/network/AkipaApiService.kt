@@ -66,8 +66,8 @@ interface AkipaApiService {
         @Field("cantidad") cantidad: Int
     ): Deferred<PlatoAgregadoADetalleResponse>
 
-    @GET("misPedidos.php")
+    @GET("solicitarCabecerasMisPedidos.php")
     fun obtenerMisPedidosAsync(
         @Query("id_solicitante") idSolicitante: String
-    ): Deferred<MisPedidosResponse>
+    ): Deferred<SolicitarCabecerasResponse>
 }
