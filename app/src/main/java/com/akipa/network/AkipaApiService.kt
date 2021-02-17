@@ -51,6 +51,14 @@ interface AkipaApiService {
     ): Deferred<RecojoEnTiendaResponse>
 
     @FormUrlEncoded
+    @POST("registrarPedidoDelivery.php")
+    fun registrarPedidoDeliveryAsync(
+        @Field("id_solicitante") idSolicitante: String,
+        @Field("direccion_entrega") direccion: String,
+        @Field("referencia_entrega") referencia: String
+    ): Deferred<DeliveryResponse>
+
+    @FormUrlEncoded
     @POST("agregarPlatoADetalle.php")
     fun agregarPlatoADetalleAsync(
         @Field("id_pedido") idPedido: Int,
