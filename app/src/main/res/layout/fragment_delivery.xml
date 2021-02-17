@@ -1,76 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/direccion_text_helper"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/direccion_helper_text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_direccion"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
-        app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
-        app:layout_constraintTop_toBottomOf="@id/direccion_text_helper">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/direccion_input"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/direccion_text_helper"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_direccion"
-            android:importantForAutofill="no"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_margin="16dp"
+            android:text="@string/direccion_helper_text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/referencia_text_helper"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/referencia_helper_text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
-        app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
-        app:layout_constraintTop_toBottomOf="@id/til_direccion" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_referencia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
-        app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
-        app:layout_constraintTop_toBottomOf="@id/referencia_text_helper">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/referencia_input"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_direccion"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_referencia"
-            android:importantForAutofill="no"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
+            app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
+            app:layout_constraintTop_toBottomOf="@id/direccion_text_helper">
 
-    <Button
-        android:id="@+id/realizar_pedido_boton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/realizar_pedido"
-        app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
-        app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
-        app:layout_constraintTop_toBottomOf="@id/til_referencia" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/direccion_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_direccion"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/referencia_text_helper"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/referencia_helper_text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
+            app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
+            app:layout_constraintTop_toBottomOf="@id/til_direccion" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_referencia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
+            app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
+            app:layout_constraintTop_toBottomOf="@id/referencia_text_helper">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/referencia_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_referencia"
+                android:importantForAutofill="no"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/realizar_pedido_boton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/realizar_pedido"
+            app:layout_constraintEnd_toEndOf="@id/direccion_text_helper"
+            app:layout_constraintStart_toStartOf="@id/direccion_text_helper"
+            app:layout_constraintTop_toBottomOf="@id/til_referencia" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
+import com.akipa.dto.request.DeliveryRequest
 import com.akipa.dto.request.RecojoEnTiendaRequest
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
@@ -31,6 +32,29 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
                 pedido.idSolicitante,
                 pedido.fechaRecojo,
                 pedido.horaRecojo
+            ).await()
+
+            if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
+                platoEnCarrito.let { lista ->
+                    lista?.map { plato ->
+                        AkipaAPI.retrofitService.agregarPlatoADetalleAsync(
+                            registroPedido.idPedido,
+                            plato.id,
+                            plato.cantidad
+                        ).await()
+                    }
+                    database.carritoDao.quitarTodosLosPlatos()
+                }
+            }
+        }
+    }
+
+    fun realizarPedidoTipoDelivery(pedido: DeliveryRequest) {
+        coroutineScope.launch(Dispatchers.IO) {
+            val registroPedido = AkipaAPI.retrofitService.registrarPedidoDeliveryAsync(
+                pedido.idSolicitante,
+                pedido.direccion,
+                pedido.referencia
             ).await()
 
             if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
