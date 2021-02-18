@@ -56,7 +56,7 @@
             android:id="@+id/action_carritoFragment_to_misPedidosFragment"
             app:destination="@id/misPedidosFragment"
             app:popUpTo="@id/listaProductosFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/agregarPlatoFragment"
