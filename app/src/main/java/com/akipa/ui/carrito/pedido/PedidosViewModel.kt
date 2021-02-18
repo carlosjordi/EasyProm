@@ -1,19 +1,14 @@
 package com.akipa.ui.carrito.pedido
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
 import com.akipa.dto.request.DeliveryRequest
 import com.akipa.dto.request.RecojoEnTiendaRequest
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class PedidosViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -24,6 +19,9 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
     val platos = database.carritoDao.obtenerTodosPlatosDelCarrito()
 
     private var platoEnCarrito: List<PlatoEnCarrito>? = null
+
+    private val _seTerminoOperacionCarrito = MutableLiveData<Boolean>()
+    val seTerminoOperacionCarrito: LiveData<Boolean> = _seTerminoOperacionCarrito
 
     fun realizarPedidoTipoRecojoEnTienda(pedido: RecojoEnTiendaRequest) {
         coroutineScope.launch(Dispatchers.IO) {
@@ -42,6 +40,9 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
                             plato.id,
                             plato.cantidad
                         ).await()
+                    }
+                    withContext(Dispatchers.Main) {
+                        _seTerminoOperacionCarrito.value = true
                     }
                     database.carritoDao.quitarTodosLosPlatos()
                 }
@@ -66,10 +67,17 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
                             plato.cantidad
                         ).await()
                     }
+                    withContext(Dispatchers.Main) {
+                        _seTerminoOperacionCarrito.value = true
+                    }
                     database.carritoDao.quitarTodosLosPlatos()
                 }
             }
         }
+    }
+
+    fun operacionCarritoTerminada() {
+        _seTerminoOperacionCarrito.value = false
     }
 
     fun asignarPlatosDelCarrito() {

@@ -7,11 +7,13 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.akipa.R
 import com.akipa.databinding.FragmentRecojoEnTiendaBinding
 import com.akipa.dialogs.SeleccionadorFecha
 import com.akipa.dialogs.SeleccionadorHora
 import com.akipa.dto.request.RecojoEnTiendaRequest
+import com.akipa.ui.carrito.CarritoFragmentDirections
 import com.akipa.utils.UniqueIdentifier
 
 class RecojoEnTiendaFragment : Fragment() {
@@ -43,6 +45,13 @@ class RecojoEnTiendaFragment : Fragment() {
 
         viewModel.platos.observe(viewLifecycleOwner) {
             viewModel.asignarPlatosDelCarrito()
+        }
+
+        viewModel.seTerminoOperacionCarrito.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(CarritoFragmentDirections.actionCarritoFragmentToMisPedidosFragment())
+                viewModel.operacionCarritoTerminada()
+            }
         }
 
         return binding.root

@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.akipa.databinding.FragmentDeliveryBinding
 import com.akipa.dto.request.DeliveryRequest
+import com.akipa.ui.carrito.CarritoFragmentDirections
 import com.akipa.utils.UniqueIdentifier
 
 class DeliveryFragment : Fragment() {
@@ -26,6 +28,13 @@ class DeliveryFragment : Fragment() {
         binding.realizarPedidoBoton.setOnClickListener { realizarPedido() }
         viewModel.platos.observe(viewLifecycleOwner) {
             viewModel.asignarPlatosDelCarrito()
+        }
+
+        viewModel.seTerminoOperacionCarrito.observe(viewLifecycleOwner) {
+            if (it) {
+                findNavController().navigate(CarritoFragmentDirections.actionCarritoFragmentToMisPedidosFragment())
+                viewModel.operacionCarritoTerminada()
+            }
         }
 
         return binding.root
