@@ -21,6 +21,10 @@ class DetalleMisPedidosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentDetalleMisPedidosBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.cabecera = args.cabecera
+
+        viewModel.solicitarDetalle(args.cabecera.id)
 
         return binding.root
     }

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="cabecera"
+            type="com.akipa.entidades.CabeceraPedido" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
