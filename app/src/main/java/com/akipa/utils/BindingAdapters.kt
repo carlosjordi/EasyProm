@@ -4,12 +4,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.akipa.R
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
+import com.akipa.dto.SolicitarCabecerasResponseItem
 import com.akipa.entidades.Plato
 import com.akipa.ui.carrito.CarritoAdapter
 import com.akipa.ui.lista_platos.EstadoListadoPlatos
@@ -107,6 +109,34 @@ fun TextView.estadoPedido(estadoPedido: Int?) {
                 context.getString(R.string.estado_pedido_aceptado)
             Constantes.ESTADO_PEDIDO_RECHAZADO -> text =
                 context.getString(R.string.estado_pedido_rechazado)
+        }
+    }
+}
+
+@BindingAdapter("direccion_fecha", "pedido")
+fun TextView.direccionFechaBinding(estadoPedido: Int?, pedido: SolicitarCabecerasResponseItem?) {
+    estadoPedido?.let {
+        when (it) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> text =
+                context.getString(R.string.fecha_display, pedido?.fecha)
+            Constantes.TIPO_PEDIDO_DELIVERY -> text =
+                context.getString(R.string.direccion_display, pedido?.direccion)
+        }
+    }
+}
+
+@BindingAdapter("referencia_hora", "pedido")
+fun TextView.referenciaHoraBinding(estadoPedido: Int?, pedido: SolicitarCabecerasResponseItem?) {
+    estadoPedido?.let {
+        when (it) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> text =
+                context.getString(R.string.hora_display, pedido?.hora)
+            Constantes.TIPO_PEDIDO_DELIVERY -> pedido?.let { p ->
+                if (p.referencia.isNotBlank()) text =
+                    context.getString(R.string.referencia_display, p.referencia)
+                else visibility = View.GONE
+            }
+            else -> text = ""
         }
     }
 }

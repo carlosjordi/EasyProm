@@ -45,7 +45,10 @@
     <string name="estado_pedido_aceptado">Aceptado</string>
     <string name="estado_pedido_rechazado">Rechazado</string>
     <string name="total_a_pagar">TOTAL A PAGAR:</string>
-
+    <string name="fecha_display">Fecha: %1$s</string>
+    <string name="hora_display">Hora: %1$s</string>
+    <string name="direccion_display">Dirección: %1$s</string>
+    <string name="referencia_display">Referencia: %1$s</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>
