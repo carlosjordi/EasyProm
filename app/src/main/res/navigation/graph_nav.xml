@@ -51,7 +51,7 @@
         android:id="@+id/carritoFragment"
         android:name="com.akipa.ui.carrito.CarritoFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_carrito" >
+        tools:layout="@layout/fragment_carrito">
         <action
             android:id="@+id/action_carritoFragment_to_misPedidosFragment"
             app:destination="@id/misPedidosFragment"
@@ -111,5 +111,18 @@
         android:id="@+id/misPedidosFragment"
         android:name="com.akipa.ui.pedidos.MisPedidosFragment"
         android:label="Mis Pedidos"
-        tools:layout="@layout/fragment_mis_pedidos" />
+        tools:layout="@layout/fragment_mis_pedidos">
+        <action
+            android:id="@+id/action_misPedidosFragment_to_detalleMisPedidosFragment"
+            app:destination="@id/detalleMisPedidosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleMisPedidosFragment"
+        android:name="com.akipa.ui.pedidos.detalle.DetalleMisPedidosFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_detalle_mis_pedidos" >
+        <argument
+            android:name="cabecera"
+            app:argType="com.akipa.entidades.CabeceraPedido" />
+    </fragment>
 </navigation>

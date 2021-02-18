@@ -1,179 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/labelDetallePedido"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/detalle_pedido"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/plato_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/platos"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/labelDetallePedido"
-        app:layout_constraintTop_toBottomOf="@+id/labelDetallePedido" />
+    </data>
 
-    <TextView
-        android:id="@+id/cantidad_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/cantidad"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/precio_label"
-        app:layout_constraintTop_toTopOf="@id/plato_label" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/precio_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="@string/precio"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/labelDetallePedido"
-        app:layout_constraintTop_toTopOf="@id/plato_label" />
+        <TextView
+            android:id="@+id/labelDetallePedido"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/detalle_pedido"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_platos_cantidades"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/labelDetallePedido"
-        app:layout_constraintStart_toStartOf="@+id/labelDetallePedido"
-        app:layout_constraintTop_toBottomOf="@+id/plato_label"
-        tools:listitem="@layout/item_detalle_mis_pedidos" />
+        <TextView
+            android:id="@+id/plato_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/platos"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/labelDetallePedido"
+            app:layout_constraintTop_toBottomOf="@+id/labelDetallePedido" />
 
-    <TextView
-        android:id="@+id/labelDireccionDeEntrega"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/direccion_entrega"
-        android:textColor="@color/marca_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
-        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
-        app:layout_constraintTop_toBottomOf="@+id/lista_platos_cantidades" />
+        <TextView
+            android:id="@+id/cantidad_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/cantidad"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/precio_label"
+            app:layout_constraintTop_toTopOf="@id/plato_label" />
 
-    <TextView
-        android:id="@+id/direcciónEntrega"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
-        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
-        app:layout_constraintTop_toBottomOf="@+id/labelDireccionDeEntrega"
-        tools:text="Calle las conchitas." />
+        <TextView
+            android:id="@+id/precio_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/precio"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/labelDetallePedido"
+            app:layout_constraintTop_toTopOf="@id/plato_label" />
 
-    <TextView
-        android:id="@+id/labelReferenciaEntrega"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/referencia_entrega"
-        android:textColor="@color/marca_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
-        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
-        app:layout_constraintTop_toBottomOf="@+id/direcciónEntrega" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lista_platos_cantidades"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/labelDetallePedido"
+            app:layout_constraintStart_toStartOf="@+id/labelDetallePedido"
+            app:layout_constraintTop_toBottomOf="@+id/plato_label"
+            tools:listitem="@layout/item_detalle_mis_pedidos" />
 
-    <TextView
-        android:id="@+id/referenciaEntrega"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
-        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
-        app:layout_constraintTop_toBottomOf="@+id/labelReferenciaEntrega"
-        tools:text="Espalda del grifo primax" />
+        <TextView
+            android:id="@+id/labelDireccionDeEntrega"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/direccion_entrega"
+            android:textColor="@color/marca_oscuro"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+            app:layout_constraintTop_toBottomOf="@+id/lista_platos_cantidades" />
 
-    <TextView
-        android:id="@+id/labelFecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/fecha"
-        android:textColor="@color/marca_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/referenciaEntrega"
-        app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega" />
+        <TextView
+            android:id="@+id/direcciónEntrega"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+            app:layout_constraintTop_toBottomOf="@+id/labelDireccionDeEntrega"
+            tools:text="Calle las conchitas." />
 
-    <TextView
-        android:id="@+id/fechaEntrega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/labelFecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelFecha"
-        app:layout_constraintTop_toTopOf="@+id/labelFecha"
-        tools:text="17/02/2021" />
+        <TextView
+            android:id="@+id/labelReferenciaEntrega"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/referencia_entrega"
+            android:textColor="@color/marca_oscuro"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+            app:layout_constraintTop_toBottomOf="@+id/direcciónEntrega" />
 
-    <TextView
-        android:id="@+id/lableHoraEntrega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/hora_entrega"
-        android:textColor="@color/marca_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/labelFecha"
-        app:layout_constraintTop_toBottomOf="@+id/labelFecha" />
+        <TextView
+            android:id="@+id/referenciaEntrega"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+            app:layout_constraintTop_toBottomOf="@+id/labelReferenciaEntrega"
+            tools:text="Espalda del grifo primax" />
 
-    <TextView
-        android:id="@+id/horaEntrega"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/lableHoraEntrega"
-        app:layout_constraintStart_toStartOf="@+id/fechaEntrega"
-        app:layout_constraintTop_toTopOf="@+id/lableHoraEntrega"
-        tools:text="6:40 pm" />
+        <TextView
+            android:id="@+id/labelFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/fecha"
+            android:textColor="@color/marca_oscuro"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/referenciaEntrega"
+            app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega" />
 
-    <TextView
-        android:id="@+id/labelTotalPagar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/total_pagar"
-        android:textColor="@color/marca_oscuro"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/horaEntrega"
-        app:layout_constraintTop_toBottomOf="@+id/horaEntrega" />
+        <TextView
+            android:id="@+id/fechaEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelFecha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/labelFecha"
+            app:layout_constraintTop_toTopOf="@+id/labelFecha"
+            tools:text="17/02/2021" />
 
-    <TextView
-        android:id="@+id/totalPagar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/marca_secundario"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/labelTotalPagar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelTotalPagar"
-        app:layout_constraintTop_toTopOf="@+id/labelTotalPagar"
-        tools:text="S/150.00" />
+        <TextView
+            android:id="@+id/lableHoraEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/hora_entrega"
+            android:textColor="@color/marca_oscuro"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/labelFecha"
+            app:layout_constraintTop_toBottomOf="@+id/labelFecha" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/horaEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/lableHoraEntrega"
+            app:layout_constraintStart_toStartOf="@+id/fechaEntrega"
+            app:layout_constraintTop_toTopOf="@+id/lableHoraEntrega"
+            tools:text="6:40 pm" />
+
+        <TextView
+            android:id="@+id/labelTotalPagar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/total_pagar"
+            android:textColor="@color/marca_oscuro"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/horaEntrega"
+            app:layout_constraintTop_toBottomOf="@+id/horaEntrega" />
+
+        <TextView
+            android:id="@+id/totalPagar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:textAlignment="center"
+            android:textColor="@color/marca_secundario"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/labelTotalPagar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/labelTotalPagar"
+            app:layout_constraintTop_toTopOf="@+id/labelTotalPagar"
+            tools:text="S/150.00" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
