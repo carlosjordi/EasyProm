@@ -55,6 +55,9 @@
     <string name="fecha">Fecha:</string>
     <string name="hora_entrega">Hora de Entrega:</string>
     <string name="total_pagar">Total a Pagar:</string>
+    <string name="platos">Platos</string>
+    <string name="precio">Precio</string>
+    <string name="cantidad">Cantidad</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>
