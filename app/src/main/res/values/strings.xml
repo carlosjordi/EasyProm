@@ -49,6 +49,12 @@
     <string name="hora_display">Hora: %1$s</string>
     <string name="direccion_display">Dirección: %1$s</string>
     <string name="referencia_display">Referencia: %1$s</string>
+    <string name="detalle_pedido">Detalle del Pedido</string>
+    <string name="direccion_entrega">Dirección de Entrega:</string>
+    <string name="referencia_entrega">Referencia de Entrega:</string>
+    <string name="fecha">Fecha:</string>
+    <string name="hora_entrega">Hora de Entrega:</string>
+    <string name="total_pagar">Total a Pagar:</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>

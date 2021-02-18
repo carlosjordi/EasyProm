@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,79 +7,72 @@
 
     <TextView
         android:id="@+id/labelDetallePedido"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        tools:text="Detalle del Pedido"
+        android:text="@string/detalle_pedido"
+        android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/listNombrePlatosyCantidaPlatos"
-        android:layout_width="361dp"
-        android:layout_height="96dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista_platos_cantidades"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/labelDetallePedido"
+        app:layout_constraintStart_toStartOf="@+id/labelDetallePedido"
         app:layout_constraintTop_toBottomOf="@+id/labelDetallePedido" />
 
     <TextView
         android:id="@+id/labelDireccionDeEntrega"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/direccion_entrega"
         android:textColor="@color/marca_oscuro"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintStart_toStartOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintTop_toBottomOf="@+id/listNombrePlatosyCantidaPlatos"
-        tools:text="Dirección de Entrega:" />
+        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+        app:layout_constraintTop_toBottomOf="@+id/lista_platos_cantidades" />
 
     <TextView
         android:id="@+id/direcciónEntrega"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintStart_toStartOf="@+id/listNombrePlatosyCantidaPlatos"
+        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
         app:layout_constraintTop_toBottomOf="@+id/labelDireccionDeEntrega"
         tools:text="Calle las conchitas." />
 
     <TextView
         android:id="@+id/labelReferenciaEntrega"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
+        android:text="@string/referencia_entrega"
         android:textColor="@color/marca_oscuro"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintStart_toStartOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintTop_toBottomOf="@+id/direcciónEntrega"
-        tools:text="Referencia de Entrega:" />
+        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
+        app:layout_constraintTop_toBottomOf="@+id/direcciónEntrega" />
 
     <TextView
         android:id="@+id/referenciaEntrega"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/listNombrePlatosyCantidaPlatos"
-        app:layout_constraintStart_toStartOf="@+id/listNombrePlatosyCantidaPlatos"
+        app:layout_constraintEnd_toEndOf="@+id/lista_platos_cantidades"
+        app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
         app:layout_constraintTop_toBottomOf="@+id/labelReferenciaEntrega"
         tools:text="Espalda del grifo primax" />
 
@@ -88,24 +80,23 @@
         android:id="@+id/labelFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        tools:text="Fecha:"
-        android:textSize="16sp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/marca_oscuro"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/referenciaEntrega"
-        app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega" />
+        app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega"
+        android:text="@string/fecha" />
 
     <TextView
         android:id="@+id/fechaEntrega"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:textSize="16sp"
-        tools:text="17/02/2021:"
         app:layout_constraintBottom_toBottomOf="@+id/labelFecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelFecha"
-        app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega" />
+        app:layout_constraintTop_toTopOf="@+id/labelFecha"
+        tools:text="17/02/2021" />
 
     <TextView
         android:id="@+id/lableHoraEntrega"
@@ -116,39 +107,41 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/labelFecha"
         app:layout_constraintTop_toBottomOf="@+id/labelFecha"
-        tools:text="Hora de Entrega:" />
+        android:text="@string/hora_entrega" />
 
     <TextView
         android:id="@+id/horaEntrega"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        tools:text="6:40 pm"
         app:layout_constraintBottom_toBottomOf="@+id/lableHoraEntrega"
-        app:layout_constraintStart_toStartOf="@+id/fechaEntrega" />
+        app:layout_constraintStart_toStartOf="@+id/fechaEntrega"
+        app:layout_constraintTop_toTopOf="@+id/lableHoraEntrega"
+        tools:text="6:40 pm" />
 
     <TextView
         android:id="@+id/labelTotalPagar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/marca_oscuro"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/horaEntrega"
         app:layout_constraintTop_toBottomOf="@+id/horaEntrega"
-        tools:text="Total Pagar:" />
+        android:text="@string/total_pagar" />
 
     <TextView
         android:id="@+id/totalPagar"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        tools:text="S/150.00"
+        android:layout_marginHorizontal="8dp"
+        android:textAlignment="center"
         android:textColor="@color/marca_secundario"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/labelTotalPagar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelTotalPagar"
-        app:layout_constraintTop_toTopOf="@+id/labelTotalPagar" />
+        app:layout_constraintTop_toTopOf="@+id/labelTotalPagar"
+        tools:text="S/150.00" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
