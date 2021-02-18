@@ -70,4 +70,9 @@ interface AkipaApiService {
     fun solicitarCabecerasMisPedidosAsync(
         @Query("id_solicitante") idSolicitante: String
     ): Deferred<SolicitarCabecerasResponse>
+
+    @GET("solicitarDetalleMiPedido.php")
+    fun solicitarDetallePedidoAsync(
+        @Query("id_pedido") idPedido: Int
+    ): Deferred<DetallePedidoResponse>
 }
