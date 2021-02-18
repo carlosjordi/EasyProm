@@ -114,13 +114,17 @@
         tools:layout="@layout/fragment_mis_pedidos">
         <action
             android:id="@+id/action_misPedidosFragment_to_detalleMisPedidosFragment"
-            app:destination="@id/detalleMisPedidosFragment" />
+            app:destination="@id/detalleMisPedidosFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detalleMisPedidosFragment"
         android:name="com.akipa.ui.pedidos.detalle.DetalleMisPedidosFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_detalle_mis_pedidos" >
+        tools:layout="@layout/fragment_detalle_mis_pedidos">
         <argument
             android:name="cabecera"
             app:argType="com.akipa.entidades.CabeceraPedido" />
