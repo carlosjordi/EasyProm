@@ -30,6 +30,9 @@ class DetalleMisPedidosFragment : Fragment() {
         viewModel.detallePlatos.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+        viewModel.costeTotal.observe(viewLifecycleOwner) {
+            binding.totalPagar.text = viewModel.costeTotal.value
+        }
 
         viewModel.solicitarDetalle(args.cabecera.id)
 
