@@ -24,6 +24,13 @@ class DetalleMisPedidosFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.cabecera = args.cabecera
 
+        val adapter = DetalleMisPedidosAdapter()
+        binding.listaPlatosCantidades.adapter = adapter
+
+        viewModel.detallePlatos.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
         viewModel.solicitarDetalle(args.cabecera.id)
 
         return binding.root

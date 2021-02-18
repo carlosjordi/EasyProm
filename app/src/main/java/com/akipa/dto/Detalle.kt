@@ -5,6 +5,6 @@ data class Detalle(
     val descripcion: String,
     val id: Int,
     val nombre: String,
-    val precio: String,
+    val precio: Double,
     val url_imagen: String
 )
