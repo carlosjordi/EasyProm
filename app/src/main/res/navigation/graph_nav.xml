@@ -101,4 +101,9 @@
             app:popUpTo="@id/gestionPlatosFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/misPedidosFragment"
+        android:name="com.akipa.ui.pedidos.MisPedidosFragment"
+        android:label="Mis Pedidos"
+        tools:layout="@layout/fragment_mis_pedidos" />
 </navigation>

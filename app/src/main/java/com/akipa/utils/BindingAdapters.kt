@@ -2,6 +2,7 @@ package com.akipa.utils
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -82,5 +83,30 @@ fun ImageView.statusPlatos(estado: EstadoListadoPlatos?) {
             setImageResource(R.drawable.ic_connection_error)
         }
         EstadoListadoPlatos.LISTO -> visibility = View.GONE
+    }
+}
+
+@BindingAdapter("tipo_pedido")
+fun TextView.tipoPedido(tipoPedido: Int?) {
+    tipoPedido?.let {
+        if (tipoPedido == Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA) {
+            text = context.getString(R.string.recojo_en_tienda)
+        } else if (tipoPedido == Constantes.TIPO_PEDIDO_DELIVERY) {
+            text = context.getString(R.string.delivery)
+        }
+    }
+}
+
+@BindingAdapter("estado_pedido")
+fun TextView.estadoPedido(estadoPedido: Int?) {
+    estadoPedido?.let {
+        when (it) {
+            Constantes.ESTADO_PEDIDO_EN_ESPERA -> text =
+                context.getString(R.string.estado_pedido_en_espera)
+            Constantes.ESTADO_PEDIDO_ACEPTADO -> text =
+                context.getString(R.string.estado_pedido_aceptado)
+            Constantes.ESTADO_PEDIDO_RECHAZADO -> text =
+                context.getString(R.string.estado_pedido_rechazado)
+        }
     }
 }

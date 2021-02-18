@@ -67,7 +67,7 @@ interface AkipaApiService {
     ): Deferred<PlatoAgregadoADetalleResponse>
 
     @GET("solicitarCabecerasMisPedidos.php")
-    fun obtenerMisPedidosAsync(
+    fun solicitarCabecerasMisPedidosAsync(
         @Query("id_solicitante") idSolicitante: String
     ): Deferred<SolicitarCabecerasResponse>
 }

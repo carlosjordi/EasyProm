@@ -39,7 +39,12 @@
     <string name="hint_direccion">Dirección</string>
     <string name="referencia_helper_text">Puede indicar una referencia (opcional)</string>
     <string name="hint_referencia">Referencia</string>
-
+    <string name="recojo_en_tienda">Recojo en Tienda</string>
+    <string name="delivery">Delivery</string>
+    <string name="estado_pedido_en_espera">En Espera</string>
+    <string name="estado_pedido_aceptado">Aceptado</string>
+    <string name="estado_pedido_rechazado">Rechazado</string>
+    <string name="total_a_pagar">TOTAL A PAGAR:</string>
 
 
     <string-array name="akipa_locales">

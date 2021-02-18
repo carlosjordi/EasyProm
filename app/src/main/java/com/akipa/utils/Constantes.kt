@@ -11,6 +11,11 @@ object Constantes {
     const val IMAGEN_NO_ACTUALIZADA = "Imagen no fue actualizada"
 
     const val PEDIDO_REGISTRADO_MENSAJE_EXITOSO = "Pedido Registrado"
+    const val TIPO_PEDIDO_RECOJO_EN_TIENDA = 1
+    const val TIPO_PEDIDO_DELIVERY = 2
+    const val ESTADO_PEDIDO_EN_ESPERA = 0
+    const val ESTADO_PEDIDO_ACEPTADO = 1
+    const val ESTADO_PEDIDO_RECHAZADO = 2
 
     /**
      * Mantendrá info del personal logueado actualmente.

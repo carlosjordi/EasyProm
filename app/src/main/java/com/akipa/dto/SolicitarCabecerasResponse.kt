@@ -1,3 +1,5 @@
 package com.akipa.dto
 
-class SolicitarCabecerasResponse : ArrayList<SolicitarCabecerasResponseItem>()
+data class SolicitarCabecerasResponse(
+    val cabeceras :List<SolicitarCabecerasResponseItem>
+)
