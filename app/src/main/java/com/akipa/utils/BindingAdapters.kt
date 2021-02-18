@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.akipa.R
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
 import com.akipa.dto.SolicitarCabecerasResponseItem
+import com.akipa.entidades.CabeceraPedido
 import com.akipa.entidades.Plato
 import com.akipa.ui.carrito.CarritoAdapter
 import com.akipa.ui.lista_platos.EstadoListadoPlatos
@@ -137,6 +138,66 @@ fun TextView.referenciaHoraBinding(estadoPedido: Int?, pedido: SolicitarCabecera
                 else visibility = View.GONE
             }
             else -> text = ""
+        }
+    }
+}
+
+@BindingAdapter("delivery_label")
+fun TextView.deliveryLabelDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> visibility = View.GONE
+            Constantes.TIPO_PEDIDO_DELIVERY -> visibility = View.VISIBLE
+        }
+    }
+}
+
+@BindingAdapter("direccion_text")
+fun TextView.direccionDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> visibility = View.GONE
+            Constantes.TIPO_PEDIDO_DELIVERY -> text = cabecera.direccion
+        }
+    }
+}
+
+@BindingAdapter("referencia_text")
+fun TextView.referenciaDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> visibility = View.GONE
+            Constantes.TIPO_PEDIDO_DELIVERY -> text = cabecera.referencia
+        }
+    }
+}
+
+@BindingAdapter("recojo_tienda_label")
+fun TextView.recojoTiendaLabelDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> visibility = View.VISIBLE
+            Constantes.TIPO_PEDIDO_DELIVERY -> visibility = View.GONE
+        }
+    }
+}
+
+@BindingAdapter("fecha_text")
+fun TextView.fechaDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> text = cabecera.fecha
+            Constantes.TIPO_PEDIDO_DELIVERY -> visibility = View.GONE
+        }
+    }
+}
+
+@BindingAdapter("hora_text")
+fun TextView.horaDetallePedido(cabecera: CabeceraPedido?) {
+    cabecera?.let {
+        when (it.tipo_pedido) {
+            Constantes.TIPO_PEDIDO_RECOJO_EN_TIENDA -> text = cabecera.hora
+            Constantes.TIPO_PEDIDO_DELIVERY -> visibility = View.GONE
         }
     }
 }

@@ -72,6 +72,7 @@
 
         <TextView
             android:id="@+id/labelDireccionDeEntrega"
+            delivery_label="@{cabecera}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -84,6 +85,7 @@
 
         <TextView
             android:id="@+id/direcciónEntrega"
+            direccion_text="@{cabecera}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -96,6 +98,7 @@
 
         <TextView
             android:id="@+id/labelReferenciaEntrega"
+            delivery_label="@{cabecera}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -108,6 +111,7 @@
 
         <TextView
             android:id="@+id/referenciaEntrega"
+            referencia_text="@{cabecera}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -120,17 +124,19 @@
 
         <TextView
             android:id="@+id/labelFecha"
+            recojo_tienda_label="@{cabecera}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/fecha"
             android:textColor="@color/marca_oscuro"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/referenciaEntrega"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
             app:layout_constraintTop_toBottomOf="@+id/referenciaEntrega" />
 
         <TextView
             android:id="@+id/fechaEntrega"
+            fecha_text="@{cabecera}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -142,17 +148,19 @@
 
         <TextView
             android:id="@+id/lableHoraEntrega"
+            recojo_tienda_label="@{cabecera}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/hora_entrega"
             android:textColor="@color/marca_oscuro"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/labelFecha"
+            app:layout_constraintStart_toStartOf="@+id/lista_platos_cantidades"
             app:layout_constraintTop_toBottomOf="@+id/labelFecha" />
 
         <TextView
             android:id="@+id/horaEntrega"
+            hora_text="@{cabecera}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
