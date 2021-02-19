@@ -58,6 +58,7 @@
     <string name="platos">Platos</string>
     <string name="precio">Precio</string>
     <string name="cantidad">Cantidad</string>
+    <string name="comentario_o_razon_rechazo">Comentario/Razón de Rechazo</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>

@@ -129,4 +129,9 @@
             android:name="cabecera"
             app:argType="com.akipa.entidades.CabeceraPedido" />
     </fragment>
+    <fragment
+        android:id="@+id/gestionPedidosFragment"
+        android:name="com.akipa.ui.gestion_pedidos.GestionPedidosFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_gestion_pedidos" />
 </navigation>
