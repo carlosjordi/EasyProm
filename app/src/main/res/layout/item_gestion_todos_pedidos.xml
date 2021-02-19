@@ -9,12 +9,17 @@
             name="pedido"
             type="com.akipa.dto.SolicitarCabecerasResponseItem" />
 
+        <variable
+            name="listener"
+            type="com.akipa.ui.gestion_pedidos.GestionPedidosListener" />
+
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp">
+        android:layout_margin="4dp"
+        android:onClick="@{() -> listener.onClick(pedido)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
