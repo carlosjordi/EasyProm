@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akipa.dto.SolicitarCabecerasResponseItem
+import com.akipa.entidades.CabeceraPedido
 import com.akipa.network.AkipaAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +15,9 @@ class GestionPedidosViewModel : ViewModel() {
 
     private val _listaCabeceraPedidos = MutableLiveData<List<SolicitarCabecerasResponseItem>>()
     val listaCabeceraPedidos: LiveData<List<SolicitarCabecerasResponseItem>> = _listaCabeceraPedidos
+
+    private val _cabeceraPedido = MutableLiveData<CabeceraPedido>()
+    val cabeceraPedido: LiveData<CabeceraPedido> = _cabeceraPedido
 
     init {
         solicitarCabecerasPedidos()
@@ -30,5 +34,9 @@ class GestionPedidosViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun pedidoSeleccionado(cabecera: CabeceraPedido) {
+        _cabeceraPedido.value = cabecera
     }
 }

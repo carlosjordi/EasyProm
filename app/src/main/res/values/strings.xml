@@ -59,6 +59,12 @@
     <string name="precio">Precio</string>
     <string name="cantidad">Cantidad</string>
     <string name="comentario_o_razon_rechazo">Comentario/Razón de Rechazo</string>
+    <string name="gestion_pedido_local">Local: %1$s</string>
+    <string name="gestion_pedido_fecha">Fecha: %1$s</string>
+    <string name="gestion_pedido_direccion">Dirección: %1$s</string>
+    <string name="gestion_pedido_hora">Hora: %1$s</string>
+    <string name="gestion_pedido_referencia">Referencia: %1$s</string>
+    <string name="gestion_pedido_estado">Estado: %1$s</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>

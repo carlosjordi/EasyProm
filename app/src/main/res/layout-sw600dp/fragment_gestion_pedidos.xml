@@ -86,21 +86,23 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".75" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/aceptar_pedido_boton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/secondGuideline"
             app:srcCompat="@drawable/ic_easyprom_logo_placeholder" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/rechazar_pedido_boton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/aceptar_pedido_boton"
             app:layout_constraintEnd_toStartOf="@+id/aceptar_pedido_boton"
             app:srcCompat="@drawable/ic_easyprom_logo_placeholder" />
@@ -111,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/aceptar_pedido_boton"
             app:layout_constraintEnd_toEndOf="@+id/aceptar_pedido_boton"
             app:layout_constraintStart_toStartOf="@+id/guideline">
