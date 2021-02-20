@@ -11,6 +11,7 @@
             android:id="@+id/lista_pedidos"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
             app:layout_constraintGuide_percent=".75" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/aceptar_pedido_boton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
@@ -96,27 +97,30 @@
             app:srcCompat="@drawable/ic_easyprom_logo_placeholder" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/rechazar_pedido_boton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintBottom_toBottomOf="@+id/aceptar_pedido_boton"
+            app:layout_constraintEnd_toStartOf="@+id/aceptar_pedido_boton"
             app:srcCompat="@drawable/ic_easyprom_logo_placeholder" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_observacion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintBottom_toTopOf="@+id/aceptar_pedido_boton"
+            app:layout_constraintEnd_toEndOf="@+id/aceptar_pedido_boton"
             app:layout_constraintStart_toStartOf="@+id/guideline">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/observacion_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/comentario_o_razon_rechazo" />
+                android:hint="@string/comentario_o_razon_rechazo"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

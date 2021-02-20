@@ -1,4 +1,4 @@
-package com.akipa.ui.pedidos
+package com.akipa.ui.gestion_pedidos
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,15 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akipa.dto.SolicitarCabecerasResponseItem
 import com.akipa.network.AkipaAPI
-import com.akipa.utils.UniqueIdentifier
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MisPedidosViewModel : ViewModel() {
+class GestionPedidosViewModel : ViewModel() {
 
-    private val _listaPedidos = MutableLiveData<List<SolicitarCabecerasResponseItem>>()
-    val listaPedidos: LiveData<List<SolicitarCabecerasResponseItem>> = _listaPedidos
+    private val _listaCabeceraPedidos = MutableLiveData<List<SolicitarCabecerasResponseItem>>()
+    val listaCabeceraPedidos: LiveData<List<SolicitarCabecerasResponseItem>> = _listaCabeceraPedidos
 
     init {
         solicitarCabecerasPedidos()
@@ -23,12 +22,11 @@ class MisPedidosViewModel : ViewModel() {
     fun solicitarCabecerasPedidos() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val id = UniqueIdentifier.getUniqueIdentifier()
                 val response =
-                    AkipaAPI.retrofitService.solicitarCabecerasMisPedidosAsync(id).await()
+                    AkipaAPI.retrofitService.solicitarTodasCabecerasPedidosAsync().await()
 
                 withContext(Dispatchers.Main) {
-                    _listaPedidos.value = response.cabeceras
+                    _listaCabeceraPedidos.value = response.cabeceras
                 }
             }
         }
