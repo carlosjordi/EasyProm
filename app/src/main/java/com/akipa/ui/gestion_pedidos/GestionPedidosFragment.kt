@@ -11,6 +11,7 @@ import com.akipa.R
 import com.akipa.databinding.FragmentGestionPedidosBinding
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.entidades.toCabeceraPedido
+import com.akipa.ui.pedidos.detalle.DetalleMisPedidosAdapter
 import com.akipa.utils.Constantes
 
 class GestionPedidosFragment : Fragment() {
@@ -27,6 +28,7 @@ class GestionPedidosFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = GestionPedidosAdapter(GestionPedidosListener {
+            viewModel.solicitarDetallePedido(it.id)
             viewModel.pedidoSeleccionado(it.toCabeceraPedido())
             activarCajaComentarioYBotonesUI()
         })
@@ -37,6 +39,13 @@ class GestionPedidosFragment : Fragment() {
         }
         viewModel.cabeceraPedido.observe(viewLifecycleOwner) {
             actualizarUI(it)
+        }
+
+        val detalleAdapter = DetalleMisPedidosAdapter()
+        binding.listaDetallePedido?.adapter = detalleAdapter
+
+        viewModel.listaDetallePedido.observe(viewLifecycleOwner) {
+            detalleAdapter.submitList(it)
         }
 
         return binding.root

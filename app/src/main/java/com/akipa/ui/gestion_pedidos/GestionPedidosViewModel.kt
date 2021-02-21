@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.akipa.dto.Detalle
 import com.akipa.dto.SolicitarCabecerasResponseItem
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.network.AkipaAPI
@@ -19,6 +20,9 @@ class GestionPedidosViewModel : ViewModel() {
     private val _cabeceraPedido = MutableLiveData<CabeceraPedido>()
     val cabeceraPedido: LiveData<CabeceraPedido> = _cabeceraPedido
 
+    private val _listaDetallePedido = MutableLiveData<List<Detalle>>()
+    val listaDetallePedido: LiveData<List<Detalle>> = _listaDetallePedido
+
     init {
         solicitarCabecerasPedidos()
     }
@@ -32,6 +36,15 @@ class GestionPedidosViewModel : ViewModel() {
                 withContext(Dispatchers.Main) {
                     _listaCabeceraPedidos.value = response.cabeceras
                 }
+            }
+        }
+    }
+
+    fun solicitarDetallePedido(idPedido: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = AkipaAPI.retrofitService.solicitarDetallePedidoAsync(idPedido).await()
+            withContext(Dispatchers.Main) {
+                _listaDetallePedido.value = response.detalle
             }
         }
     }
