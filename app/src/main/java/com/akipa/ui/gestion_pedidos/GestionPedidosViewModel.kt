@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.akipa.dto.Detalle
 import com.akipa.dto.SolicitarCabecerasResponseItem
+import com.akipa.dto.request.GestionPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.network.AkipaAPI
 import kotlinx.coroutines.Dispatchers
@@ -46,6 +47,17 @@ class GestionPedidosViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 _listaDetallePedido.value = response.detalle
             }
+        }
+    }
+
+    fun gestionarPedido(request: GestionPedidoRequest) {
+        viewModelScope.launch(Dispatchers.IO) {
+            AkipaAPI.retrofitService.gestionarPedidoAsync(
+                request.idPedido,
+                request.observacion,
+                request.estado
+            ).await()
+            solicitarCabecerasPedidos()
         }
     }
 

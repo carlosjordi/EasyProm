@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.akipa.R
 import com.akipa.databinding.FragmentGestionPedidosBinding
+import com.akipa.dto.request.GestionPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.entidades.toCabeceraPedido
 import com.akipa.ui.pedidos.detalle.DetalleMisPedidosAdapter
@@ -18,6 +19,7 @@ class GestionPedidosFragment : Fragment() {
 
     private lateinit var binding: FragmentGestionPedidosBinding
     private val viewModel: GestionPedidosViewModel by viewModels()
+    private var idPedido = -1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,7 +30,8 @@ class GestionPedidosFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = GestionPedidosAdapter(GestionPedidosListener {
-            viewModel.solicitarDetallePedido(it.id)
+            idPedido = it.id
+            viewModel.solicitarDetallePedido(idPedido)
             viewModel.pedidoSeleccionado(it.toCabeceraPedido())
             activarCajaComentarioYBotonesUI()
         })
@@ -48,7 +51,28 @@ class GestionPedidosFragment : Fragment() {
             detalleAdapter.submitList(it)
         }
 
+        binding.aceptarPedidoBoton?.setOnClickListener { aceptarPedido() }
+        binding.rechazarPedidoBoton?.setOnClickListener { rechazarPedido() }
+
         return binding.root
+    }
+
+    private fun rechazarPedido() {
+        val request = GestionPedidoRequest(
+            idPedido,
+            binding.observacionInput?.text.toString(),
+            Constantes.ESTADO_PEDIDO_RECHAZADO
+        )
+        viewModel.gestionarPedido(request)
+    }
+
+    private fun aceptarPedido() {
+        val request = GestionPedidoRequest(
+            idPedido,
+            binding.observacionInput?.text.toString(),
+            Constantes.ESTADO_PEDIDO_ACEPTADO
+        )
+        viewModel.gestionarPedido(request)
     }
 
     private fun activarCajaComentarioYBotonesUI() {
