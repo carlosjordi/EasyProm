@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.akipa.R
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
 import com.akipa.databinding.FragmentCarritoBinding
@@ -41,6 +42,7 @@ class CarritoFragment : Fragment(), OnClickItemsCarrito {
         TabLayoutMediator(tabs, viewpager) { tab, position ->
             tab.text = obtenerTituloTab(position)
         }.attach()
+        binding.irListadoBoton.setOnClickListener { navegarAListado() }
 
         return binding.root
     }
@@ -63,4 +65,8 @@ class CarritoFragment : Fragment(), OnClickItemsCarrito {
             PEDIDOS_DELIVERY -> getString(R.string.tab_titulo_delivery)
             else -> throw IndexOutOfBoundsException()
         }
+
+    private fun navegarAListado() {
+        findNavController().navigate(CarritoFragmentDirections.actionCarritoFragmentToListaProductosFragment())
+    }
 }

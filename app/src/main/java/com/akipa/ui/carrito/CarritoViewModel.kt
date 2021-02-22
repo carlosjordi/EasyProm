@@ -26,6 +26,9 @@ class CarritoViewModel(application: Application) : AndroidViewModel(application)
     val total = Transformations.map(_total) {
         "S/" + "%.2f".format(it)
     }
+    val hayPlatosEnCarrito = Transformations.map(platosEnCarrito) {
+        !it.isNullOrEmpty()
+    }
 
     fun incrementarCantidadPlato(platoEnCarrito: PlatoEnCarrito) {
 

@@ -65,6 +65,8 @@
     <string name="gestion_pedido_hora">Hora: %1$s</string>
     <string name="gestion_pedido_referencia">Referencia: %1$s</string>
     <string name="gestion_pedido_estado">Estado: %1$s</string>
+    <string name="no_platos_text">Aún no has agregado un plato a tu carrito</string>
+    <string name="ir_lista_platos">Ir a listado de platos</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>

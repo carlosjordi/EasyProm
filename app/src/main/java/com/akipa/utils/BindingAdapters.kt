@@ -201,3 +201,12 @@ fun TextView.horaDetallePedido(cabecera: CabeceraPedido?) {
         }
     }
 }
+
+@BindingAdapter("isGone")
+fun View.bindIsGone(isGone: Boolean) {
+    visibility = if (isGone) {
+        View.GONE
+    } else {
+        View.VISIBLE
+    }
+}

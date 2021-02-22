@@ -18,52 +18,97 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/lista_carrito"
-                listaPlatosEnCarrito="@{viewmodel.platosEnCarrito}"
-                android:layout_width="0dp"
+            <!-- Layout normal | cuando se tienen un plato en carrito almenos -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/carrito_modo_normal"
+                isGone="@{!viewmodel.hayPlatosEnCarrito}"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/item_plato_en_carrito" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/subtotal_texto"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/subtotal"
-                android:textColor="@color/marca_oscuro"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@id/subtotal_valor"
-                app:layout_constraintTop_toBottomOf="@id/lista_carrito" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lista_carrito"
+                    listaPlatosEnCarrito="@{viewmodel.platosEnCarrito}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_plato_en_carrito" />
 
-            <TextView
-                android:id="@+id/subtotal_valor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@{viewmodel.total}"
-                android:textColor="@color/marca_oscuro"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="@id/lista_carrito"
-                app:layout_constraintTop_toTopOf="@id/subtotal_texto"
-                tools:text="S/79.99" />
+                <TextView
+                    android:id="@+id/subtotal_texto"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/subtotal"
+                    android:textColor="@color/marca_oscuro"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toStartOf="@id/subtotal_valor"
+                    app:layout_constraintTop_toBottomOf="@id/lista_carrito" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+                <TextView
+                    android:id="@+id/subtotal_valor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{viewmodel.total}"
+                    android:textColor="@color/marca_oscuro"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="@id/lista_carrito"
+                    app:layout_constraintTop_toTopOf="@id/subtotal_texto"
+                    tools:text="S/79.99" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/subtotal_valor" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tabs" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Layout para cuando no hay platos en carrito -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/carrito_modo_no_platos"
+                isGone="@{viewmodel.hayPlatosEnCarrito}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/subtotal_valor" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tabs" />
+                <TextView
+                    android:id="@+id/no_platos_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/no_platos_text"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <Button
+                    android:id="@+id/ir_listado_boton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/ir_lista_platos"
+                    app:layout_constraintEnd_toEndOf="@id/no_platos_text"
+                    app:layout_constraintStart_toStartOf="@id/no_platos_text"
+                    app:layout_constraintTop_toBottomOf="@id/no_platos_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
