@@ -8,6 +8,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.akipa.databinding.ActivityMainBinding
+import com.akipa.utils.Certificado
 import com.akipa.utils.Constantes
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         setContentView(binding.root)
 
+        Certificado.handleSSLHandshake()
         drawerLayout = binding.drawerLayout
 
         // Para manejar la navegación con el 'up button'
