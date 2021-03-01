@@ -3,7 +3,7 @@ package com.akipa.ui.mantenimiento_platos.gestion_platos.actualizar_plato
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.akipa.dto.request.PlatoActualizarRequest
+import com.akipa.dto.request.ActualizarPlatoRequest
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
 import kotlinx.coroutines.*
@@ -17,14 +17,10 @@ class ActualizarPlatoViewModel : ViewModel() {
     val platoActualizadoResultado: LiveData<String?>
         get() = _platoActualizadoResultado
 
-    fun actualizarPlato(plato: PlatoActualizarRequest) =
+    fun actualizarPlato(plato: ActualizarPlatoRequest) =
         coroutineScope.launch(Dispatchers.IO) {
             val resultado = AkipaAPI.retrofitService.actualizarPlatoAsync(
-                plato.id,
-                plato.nombre,
-                plato.precio,
-                plato.foto,
-                plato.descripcion
+                plato
             ).await()
             if (resultado.mensaje == Constantes.PLATO_ACTUALIZADO_MENSAJE_EXITOSO) {
                 withContext(Dispatchers.Main) {

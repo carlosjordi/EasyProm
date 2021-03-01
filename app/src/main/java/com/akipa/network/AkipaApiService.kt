@@ -1,6 +1,7 @@
 package com.akipa.network
 
 import com.akipa.dto.*
+import com.akipa.dto.request.ActualizarPlatoRequest
 import com.akipa.dto.request.RegistrarPlatoRequest
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
@@ -32,14 +33,13 @@ interface AkipaApiService {
         @Body request: RegistrarPlatoRequest
     ): Deferred<PlatoRegistradoResponse>
 
-    @FormUrlEncoded
-    @POST("actualizarPlato.php")
+    /**
+     * Se llama al servicio cuando se oprime el boton de 'actualizar plato'
+     * desde las opciones de gestion del administrador
+     */
+    @PUT("actualizarPlato.php")
     fun actualizarPlatoAsync(
-        @Field("id") id: Int,
-        @Field("nombre") nombre: String,
-        @Field("precio") precio: Double,
-        @Field("foto") foto: String,
-        @Field("descripcion") descripcion: String?
+        @Body request: ActualizarPlatoRequest
     ): Deferred<PlatoRegistradoResponse>
 
     @FormUrlEncoded
