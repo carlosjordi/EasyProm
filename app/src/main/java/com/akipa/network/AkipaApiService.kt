@@ -2,6 +2,7 @@ package com.akipa.network
 
 import com.akipa.dto.*
 import com.akipa.dto.request.ActualizarPlatoRequest
+import com.akipa.dto.request.EliminarPlatoRequest
 import com.akipa.dto.request.RegistrarPlatoRequest
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
@@ -42,9 +43,13 @@ interface AkipaApiService {
         @Body request: ActualizarPlatoRequest
     ): Deferred<PlatoRegistradoResponse>
 
-    @FormUrlEncoded
-    @POST("eliminarPlato.php")
-    fun eliminarPlatoAsync(@Field("id") id: Int): Deferred<PlatoRegistradoResponse>
+    /**
+     * Se llama al servicio cuando se oprime el icono de eliminar(tacho)
+     * ubicado en parte derecha de cada plato en el apartado de gestión
+     * de platos del administrador
+     */
+    @PUT("eliminarPlato.php")
+    fun eliminarPlatoAsync(@Body request: EliminarPlatoRequest): Deferred<PlatoRegistradoResponse>
 
     @FormUrlEncoded
     @POST("registrarPedidoRecojoEnTienda.php")

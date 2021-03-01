@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.akipa.databinding.FragmentGestionPlatosBinding
+import com.akipa.dto.request.EliminarPlatoRequest
 import com.akipa.entidades.Plato
 import com.akipa.ui.lista_platos.ListaPlatosViewModel
 
@@ -41,5 +42,5 @@ class GestionPlatosFragment : Fragment(), GestionPlatosListener {
     }
 
     override fun onEliminarClick(idPlato: Int) =
-        viewModel.eliminarPlato(idPlato)
+        viewModel.eliminarPlato(EliminarPlatoRequest(idPlato))
 }

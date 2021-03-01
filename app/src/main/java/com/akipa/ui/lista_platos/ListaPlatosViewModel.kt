@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.akipa.dto.ListadoPlatos
+import com.akipa.dto.request.EliminarPlatoRequest
 import com.akipa.entidades.Plato
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
@@ -53,9 +54,9 @@ class ListaPlatosViewModel : ViewModel() {
             }
         }
 
-    fun eliminarPlato(idPlato: Int) {
+    fun eliminarPlato(plato: EliminarPlatoRequest) {
         coroutineScope.launch(Dispatchers.IO) {
-            val respuesta = AkipaAPI.retrofitService.eliminarPlatoAsync(idPlato).await()
+            val respuesta = AkipaAPI.retrofitService.eliminarPlatoAsync(plato).await()
             if (respuesta.mensaje == Constantes.PLATO_ELIMINADO_MENSAJE_EXITOSO) {
                 obtenerListadoPlatos()
             }
