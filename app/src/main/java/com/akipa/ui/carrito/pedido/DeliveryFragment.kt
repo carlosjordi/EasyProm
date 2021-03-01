@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.akipa.databinding.FragmentDeliveryBinding
-import com.akipa.dto.request.DeliveryRequest
+import com.akipa.dto.request.RegistrarPedidoDeliveryRequest
 import com.akipa.ui.carrito.CarritoFragmentDirections
 import com.akipa.utils.UniqueIdentifier
 
@@ -44,7 +44,7 @@ class DeliveryFragment : Fragment() {
         val idSolicitante = UniqueIdentifier.getUniqueIdentifier()
         val direccion = binding.direccionInput.text.toString()
         val referencia = binding.referenciaInput.text.toString()
-        val pedido = DeliveryRequest(idSolicitante, direccion, referencia)
+        val pedido = RegistrarPedidoDeliveryRequest(idSolicitante, direccion, referencia)
         viewModel.realizarPedidoTipoDelivery(pedido)
     }
 }

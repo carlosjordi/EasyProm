@@ -1,10 +1,7 @@
 package com.akipa.network
 
 import com.akipa.dto.*
-import com.akipa.dto.request.ActualizarPlatoRequest
-import com.akipa.dto.request.EliminarPlatoRequest
-import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
-import com.akipa.dto.request.RegistrarPlatoRequest
+import com.akipa.dto.request.*
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -61,12 +58,13 @@ interface AkipaApiService {
         @Body request: RegistrarPedidoRecojoTiendaRequest
     ): Deferred<RecojoEnTiendaResponse>
 
-    @FormUrlEncoded
+    /**
+     * Se llama al servicio cuando se oprime el boton de 'realizar pedido'
+     * en el modo de 'Delivery' desde la pantalla del 'Carrito'
+     */
     @POST("registrarPedidoDelivery.php")
     fun registrarPedidoDeliveryAsync(
-        @Field("id_solicitante") idSolicitante: String,
-        @Field("direccion_entrega") direccion: String,
-        @Field("referencia_entrega") referencia: String
+        @Body request: RegistrarPedidoDeliveryRequest
     ): Deferred<DeliveryResponse>
 
     @FormUrlEncoded

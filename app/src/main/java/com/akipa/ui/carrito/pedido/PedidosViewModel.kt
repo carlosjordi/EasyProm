@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
-import com.akipa.dto.request.DeliveryRequest
+import com.akipa.dto.request.RegistrarPedidoDeliveryRequest
 import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
@@ -47,12 +47,10 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun realizarPedidoTipoDelivery(pedido: DeliveryRequest) {
+    fun realizarPedidoTipoDelivery(pedido: RegistrarPedidoDeliveryRequest) {
         coroutineScope.launch(Dispatchers.IO) {
             val registroPedido = AkipaAPI.retrofitService.registrarPedidoDeliveryAsync(
-                pedido.idSolicitante,
-                pedido.direccion,
-                pedido.referencia
+                pedido
             ).await()
 
             if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
