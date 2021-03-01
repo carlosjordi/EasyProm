@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.akipa.R
 import com.akipa.databinding.FragmentGestionPedidosBinding
-import com.akipa.dto.request.GestionPedidoRequest
+import com.akipa.dto.request.GestionarPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.entidades.toCabeceraPedido
 import com.akipa.ui.pedidos.detalle.DetalleMisPedidosAdapter
@@ -58,7 +58,7 @@ class GestionPedidosFragment : Fragment() {
     }
 
     private fun rechazarPedido() {
-        val request = GestionPedidoRequest(
+        val request = GestionarPedidoRequest(
             idPedido,
             binding.observacionInput?.text.toString(),
             Constantes.ESTADO_PEDIDO_RECHAZADO
@@ -67,7 +67,7 @@ class GestionPedidosFragment : Fragment() {
     }
 
     private fun aceptarPedido() {
-        val request = GestionPedidoRequest(
+        val request = GestionarPedidoRequest(
             idPedido,
             binding.observacionInput?.text.toString(),
             Constantes.ESTADO_PEDIDO_ACEPTADO

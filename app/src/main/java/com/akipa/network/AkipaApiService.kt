@@ -90,11 +90,12 @@ interface AkipaApiService {
     @GET("solicitarCabecerasPedidos.php")
     fun solicitarTodasCabecerasPedidosAsync(): Deferred<SolicitarCabecerasResponse>
 
-    @FormUrlEncoded
-    @POST("gestionarPedido.php")
+    /**
+     * Se llama al servicio cuando se acepta o rechaza un pedido desde las opciones de gestión
+     * del cajero
+     */
+    @PUT("gestionarPedido.php")
     fun gestionarPedidoAsync(
-        @Field("id_pedido") idPedido: Int,
-        @Field("observacion") observacion: String,
-        @Field("estado") estado: Int
+        @Body request: GestionarPedidoRequest
     ): Deferred<GestionPedidoResponse>
 }
