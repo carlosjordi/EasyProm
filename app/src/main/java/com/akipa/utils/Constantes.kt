@@ -1,8 +1,12 @@
 package com.akipa.utils
 
 import com.akipa.database.personal_logueado.PersonalLogueado
+import com.akipa.network.BASE_URL
 
 object Constantes {
+
+    const val BASE_PARA_FOTOS = "${BASE_URL}imagenes_platos/"
+
     const val CANTIDAD_PLATOS_MINIMA = 1
     const val CANTIDAD_PLATOS_MAXIMA = 10
     const val PLATO_REGISTRADO_MENSAJE_EXITOSO = "Plato Registrado"

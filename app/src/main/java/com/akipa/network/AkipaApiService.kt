@@ -1,6 +1,7 @@
 package com.akipa.network
 
 import com.akipa.dto.*
+import com.akipa.dto.request.RegistrarPlatoRequest
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
 
@@ -9,6 +10,10 @@ import retrofit2.http.*
  */
 interface AkipaApiService {
 
+    /**
+     * Se llama al servicio cuando se inicia la aplicación y cada vez que
+     * se realiza un swipe down del listado de platos
+     */
     @GET("listarPlatos.php")
     fun obtenerListadoPlatosAsync(): Deferred<ListadoPlatos>
 
@@ -18,13 +23,13 @@ interface AkipaApiService {
         @Query("contrasena") contrasena: String
     ): Deferred<PersonalAutorizado>
 
-    @FormUrlEncoded
+    /**
+     * Se llama al servicio cuando se oprime el boton de 'agregar plato'
+     * desde las opciones de gestión del administrador
+     */
     @POST("registrarPlato.php")
     fun registrarPlatoAsync(
-        @Field("nombre") nombre: String,
-        @Field("precio") precio: Double,
-        @Field("foto") foto: String,
-        @Field("descripcion") descripcion: String?
+        @Body request: RegistrarPlatoRequest
     ): Deferred<PlatoRegistradoResponse>
 
     @FormUrlEncoded

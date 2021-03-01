@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.akipa.databinding.FragmentAgregarPlatoBinding
-import com.akipa.dto.request.PlatoRequest
+import com.akipa.dto.request.RegistrarPlatoRequest
 import com.akipa.utils.Constantes
 import java.io.ByteArrayOutputStream
 
@@ -57,7 +57,7 @@ class AgregarPlatoFragment : Fragment() {
         val descripcion = binding.descripcionPlatoInput.text.toString()
         val foto = imagenToString(fotoBitmap)
 
-        val plato = PlatoRequest(nombre, precio, foto, descripcion)
+        val plato = RegistrarPlatoRequest(nombre, precio, descripcion, foto)
         viewModel.registrarPlato(plato)
     }
 
