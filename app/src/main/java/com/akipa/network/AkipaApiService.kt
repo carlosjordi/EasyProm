@@ -3,6 +3,7 @@ package com.akipa.network
 import com.akipa.dto.*
 import com.akipa.dto.request.ActualizarPlatoRequest
 import com.akipa.dto.request.EliminarPlatoRequest
+import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
 import com.akipa.dto.request.RegistrarPlatoRequest
 import kotlinx.coroutines.Deferred
 import retrofit2.http.*
@@ -51,13 +52,13 @@ interface AkipaApiService {
     @PUT("eliminarPlato.php")
     fun eliminarPlatoAsync(@Body request: EliminarPlatoRequest): Deferred<PlatoRegistradoResponse>
 
-    @FormUrlEncoded
+    /**
+     * Se llama al servicio cuando se oprime el boton de 'realizar pedido' en el modo de
+     * 'Recojo en Tienda' desde la pantalla del 'Carrito'
+     */
     @POST("registrarPedidoRecojoEnTienda.php")
     fun registrarPedidoRecojoEnTiendaAsync(
-        @Field("id_local") idLocal: Int,
-        @Field("id_solicitante") idSolicitante: String,
-        @Field("fecha_recojo") fechaRecojo: String,
-        @Field("hora_recojo") horaRecojo: String
+        @Body request: RegistrarPedidoRecojoTiendaRequest
     ): Deferred<RecojoEnTiendaResponse>
 
     @FormUrlEncoded

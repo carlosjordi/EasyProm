@@ -12,7 +12,7 @@ import com.akipa.R
 import com.akipa.databinding.FragmentRecojoEnTiendaBinding
 import com.akipa.dialogs.SeleccionadorFecha
 import com.akipa.dialogs.SeleccionadorHora
-import com.akipa.dto.request.RecojoEnTiendaRequest
+import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
 import com.akipa.ui.carrito.CarritoFragmentDirections
 import com.akipa.utils.UniqueIdentifier
 
@@ -65,7 +65,7 @@ class RecojoEnTiendaFragment : Fragment() {
         val horaRecojo = binding.seleccionarHoraValor.text.toString()
 
         val pedidoEnTienda =
-            RecojoEnTiendaRequest(idLocal, idSolicitante, fechaRecojo, horaRecojo)
+            RegistrarPedidoRecojoTiendaRequest(idLocal, idSolicitante, fechaRecojo, horaRecojo)
         viewModel.realizarPedidoTipoRecojoEnTienda(pedidoEnTienda)
     }
 

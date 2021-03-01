@@ -5,7 +5,7 @@ import androidx.lifecycle.*
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
 import com.akipa.dto.request.DeliveryRequest
-import com.akipa.dto.request.RecojoEnTiendaRequest
+import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
 import com.akipa.network.AkipaAPI
 import com.akipa.utils.Constantes
 import kotlinx.coroutines.*
@@ -23,13 +23,10 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
     private val _seTerminoOperacionCarrito = MutableLiveData<Boolean>()
     val seTerminoOperacionCarrito: LiveData<Boolean> = _seTerminoOperacionCarrito
 
-    fun realizarPedidoTipoRecojoEnTienda(pedido: RecojoEnTiendaRequest) {
+    fun realizarPedidoTipoRecojoEnTienda(pedido: RegistrarPedidoRecojoTiendaRequest) {
         coroutineScope.launch(Dispatchers.IO) {
             val registroPedido = AkipaAPI.retrofitService.registrarPedidoRecojoEnTiendaAsync(
-                pedido.idLocal,
-                pedido.idSolicitante,
-                pedido.fechaRecojo,
-                pedido.horaRecojo
+                pedido
             ).await()
 
             if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
