@@ -77,16 +77,28 @@ interface AkipaApiService {
         @Body request: AgregarPlatoADetalleRequest
     ): Deferred<PlatoAgregadoADetalleResponse>
 
+    /**
+     * Se llama al servicio cuando se va a la lista de 'mis pedidos'
+     * en las opciones del menu de cliente
+     */
     @GET("solicitarCabecerasMisPedidos.php")
     fun solicitarCabecerasMisPedidosAsync(
         @Query("id_solicitante") idSolicitante: String
     ): Deferred<SolicitarCabecerasResponse>
 
+    /**
+     * Se llama al servicio cuando se hace un tap a alguno de los pedidos realizados
+     * por parte del cliente o cuando el cajero va a atender alguno de los pedidos
+     */
     @GET("solicitarDetalleMiPedido.php")
     fun solicitarDetallePedidoAsync(
         @Query("id_pedido") idPedido: Int
     ): Deferred<DetallePedidoResponse>
 
+    /**
+     * Se llama al servicio cuando se está trabajando como cajero y se ingresa a
+     * 'Gestión de pedidos'
+     */
     @GET("solicitarCabecerasPedidos.php")
     fun solicitarTodasCabecerasPedidosAsync(): Deferred<SolicitarCabecerasResponse>
 
