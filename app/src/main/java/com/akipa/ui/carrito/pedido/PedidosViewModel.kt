@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.akipa.database.AkipaLocalDatabase
 import com.akipa.database.plato_en_carrito.PlatoEnCarrito
+import com.akipa.dto.request.AgregarPlatoADetalleRequest
 import com.akipa.dto.request.RegistrarPedidoDeliveryRequest
 import com.akipa.dto.request.RegistrarPedidoRecojoTiendaRequest
 import com.akipa.network.AkipaAPI
@@ -30,12 +31,16 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
             ).await()
 
             if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
+                var agregarDetalleRequest: AgregarPlatoADetalleRequest
                 platoEnCarrito.let { lista ->
                     lista?.map { plato ->
-                        AkipaAPI.retrofitService.agregarPlatoADetalleAsync(
+                        agregarDetalleRequest = AgregarPlatoADetalleRequest(
                             registroPedido.idPedido,
                             plato.id,
                             plato.cantidad
+                        )
+                        AkipaAPI.retrofitService.agregarPlatoADetalleAsync(
+                            agregarDetalleRequest
                         ).await()
                     }
                     withContext(Dispatchers.Main) {
@@ -54,12 +59,16 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
             ).await()
 
             if (registroPedido.mensaje == Constantes.PEDIDO_REGISTRADO_MENSAJE_EXITOSO) {
+                var agregarDetalleRequest: AgregarPlatoADetalleRequest
                 platoEnCarrito.let { lista ->
                     lista?.map { plato ->
-                        AkipaAPI.retrofitService.agregarPlatoADetalleAsync(
+                        agregarDetalleRequest = AgregarPlatoADetalleRequest(
                             registroPedido.idPedido,
                             plato.id,
                             plato.cantidad
+                        )
+                        AkipaAPI.retrofitService.agregarPlatoADetalleAsync(
+                            agregarDetalleRequest
                         ).await()
                     }
                     withContext(Dispatchers.Main) {

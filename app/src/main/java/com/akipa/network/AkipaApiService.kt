@@ -67,12 +67,14 @@ interface AkipaApiService {
         @Body request: RegistrarPedidoDeliveryRequest
     ): Deferred<DeliveryResponse>
 
-    @FormUrlEncoded
+    /**
+     * Se llama al servicio cuando se oprime el boton de 'realizar pedido' en
+     * cualquiera de los 2 modos(Recojo en Tienda|Delivery) en la pantalla del
+     * 'Carrito'tras haber registrado el pedido
+     */
     @POST("agregarPlatoADetalle.php")
     fun agregarPlatoADetalleAsync(
-        @Field("id_pedido") idPedido: Int,
-        @Field("id_plato") idPlato: Int,
-        @Field("cantidad") cantidad: Int
+        @Body request: AgregarPlatoADetalleRequest
     ): Deferred<PlatoAgregadoADetalleResponse>
 
     @GET("solicitarCabecerasMisPedidos.php")
