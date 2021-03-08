@@ -15,4 +15,8 @@
     <color name="marca_secundario">#d02430</color>
     <color name="marca_secundario_claro">#EC2836</color>
     <color name="marca_oscuro">#000000</color>
+
+    <color name="estado_rechazado">#ff3333</color>
+    <color name="estado_aceptado">#39ac73</color>
+    <color name="estado_en_espera">#d6d6c2</color>
 </resources>

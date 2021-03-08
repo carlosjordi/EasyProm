@@ -1,8 +1,11 @@
 package com.akipa.utils
 
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.cardview.widget.CardView
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
@@ -208,5 +211,15 @@ fun View.bindIsGone(isGone: Boolean) {
         View.GONE
     } else {
         View.VISIBLE
+    }
+}
+
+@RequiresApi(Build.VERSION_CODES.M)
+@BindingAdapter("estadoBackgroundColor")
+fun CardView.bindBackgroundTint(pedido: SolicitarCabecerasResponseItem?) {
+    when (pedido?.estado) {
+        Constantes.ESTADO_PEDIDO_EN_ESPERA -> setCardBackgroundColor(context.getColor(R.color.estado_en_espera))
+        Constantes.ESTADO_PEDIDO_RECHAZADO -> setCardBackgroundColor(context.getColor(R.color.estado_rechazado))
+        Constantes.ESTADO_PEDIDO_ACEPTADO -> setCardBackgroundColor(context.getColor(R.color.estado_aceptado))
     }
 }
