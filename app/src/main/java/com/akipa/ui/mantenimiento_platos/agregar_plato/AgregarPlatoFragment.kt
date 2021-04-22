@@ -11,7 +11,6 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +54,6 @@ class AgregarPlatoFragment : Fragment() {
                 viewModel.registrarPlatoTerminado()
             }
         }
-
         return binding.root
     }
 
@@ -76,6 +74,10 @@ class AgregarPlatoFragment : Fragment() {
             IMAGEN_PLATO_OPCION_GALERIA,
             IMAGEN_PLATO_OPCION_CANCELAR
         )
+        mostrarOpcionesParaImagenPlato(opciones)
+    }
+
+    private fun mostrarOpcionesParaImagenPlato(opciones: Array<String>) {
         AlertDialog.Builder(activity).apply {
             setTitle(IMAGEN_PLATO_TITULO)
             setItems(opciones) { dialog: DialogInterface, which: Int ->
@@ -107,31 +109,34 @@ class AgregarPlatoFragment : Fragment() {
     private fun solicitarPermiso(cual: Int) {
         when (cual) {
             CAMERA_PERMISSION_CODE -> {
-                if (!tienePermisoCamara()) {
-                    requestPermissions(
-                        arrayOf(Manifest.permission.CAMERA),
-                        IMAGEN_PLATO_REQUEST_CODE
-                    )
-                } else {
-                    Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                        startActivityForResult(it, CAMERA_REQUEST_CODE)
-                    }
+                if (tienePermisoCamara()) {
+                    abrirCamara()
+                    return
                 }
+                pedirPermisoCamara()
             }
             GALLERY_PERMISSION_CODE -> {
-                if (!tienePermisoGaleria()) {
-                    requestPermissions(
-                        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                        IMAGEN_PLATO_REQUEST_CODE
-                    )
-                } else {
-                    Intent(Intent.ACTION_PICK).also {
-                        it.type = "image/*"
-                        startActivityForResult(it, GALLERY_REQUEST_CODE)
-                    }
+                if (tienePermisoGaleria()) {
+                    abrirGaleria()
+                    return
                 }
+                pedirPermisoGaleria()
             }
         }
+    }
+
+    private fun pedirPermisoCamara() {
+        requestPermissions(
+            arrayOf(Manifest.permission.CAMERA),
+            IMAGEN_PLATO_REQUEST_CODE
+        )
+    }
+
+    private fun pedirPermisoGaleria() {
+        requestPermissions(
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            IMAGEN_PLATO_REQUEST_CODE
+        )
     }
 
     private fun imagenToString(bitmap: Bitmap): String {
@@ -149,20 +154,24 @@ class AgregarPlatoFragment : Fragment() {
     ) {
         if (requestCode == IMAGEN_PLATO_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             when (permissions[0]) {
-                Manifest.permission.CAMERA -> {
-                    Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                        startActivityForResult(it, CAMERA_REQUEST_CODE)
-                    }
-                }
-                Manifest.permission.READ_EXTERNAL_STORAGE -> {
-                    Intent(Intent.ACTION_PICK).also {
-                        it.type = "image/*"
-                        startActivityForResult(it, GALLERY_REQUEST_CODE)
-                    }
-                }
+                Manifest.permission.CAMERA -> abrirCamara()
+                Manifest.permission.READ_EXTERNAL_STORAGE -> abrirGaleria()
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+
+    private fun abrirCamara() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+            startActivityForResult(it, CAMERA_REQUEST_CODE)
+        }
+    }
+
+    private fun abrirGaleria() {
+        Intent(Intent.ACTION_PICK).also {
+            it.type = "image/*"
+            startActivityForResult(it, GALLERY_REQUEST_CODE)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
