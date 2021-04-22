@@ -19,7 +19,7 @@ import androidx.navigation.fragment.navArgs
 import com.akipa.databinding.FragmentActualizarPlatoBinding
 import com.akipa.dto.request.ActualizarPlatoRequest
 import com.akipa.ui.mantenimiento_platos.agregar_plato.CAMERA_PERMISSION_CODE
-import com.akipa.ui.mantenimiento_platos.agregar_plato.CAMERA_REQUEST_CODE
+import com.akipa.ui.mantenimiento_platos.agregar_plato.IMAGEN_PLATO_REQUEST_CODE
 import com.akipa.utils.Constantes
 import java.io.ByteArrayOutputStream
 
@@ -80,7 +80,7 @@ class ActualizarPlatoFragment : Fragment() {
             )
         } else {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                startActivityForResult(it, CAMERA_REQUEST_CODE)
+                startActivityForResult(it, IMAGEN_PLATO_REQUEST_CODE)
             }
         }
     }
@@ -99,13 +99,13 @@ class ActualizarPlatoFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == CAMERA_PERMISSION_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                startActivityForResult(it, CAMERA_REQUEST_CODE)
+                startActivityForResult(it, IMAGEN_PLATO_REQUEST_CODE)
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == CAMERA_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == IMAGEN_PLATO_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             fotoBitmap = data?.extras?.get("data") as Bitmap
             binding.platoImagen.setImageBitmap(fotoBitmap)
             imagenFueCambiada = true
