@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.akipa.R
 import com.akipa.databinding.FragmentGestionPlatosBinding
 import com.akipa.dto.request.EliminarPlatoRequest
 import com.akipa.entidades.Plato
@@ -41,6 +42,12 @@ class GestionPlatosFragment : Fragment(), GestionPlatosListener {
         )
     }
 
-    override fun onEliminarClick(idPlato: Int) =
-        viewModel.eliminarPlato(EliminarPlatoRequest(idPlato))
+    override fun onEliminarClick(idPlato: Int) {
+        val plato = EliminarPlatoRequest(idPlato)
+        GestionPlatoDialog(
+            message = getString(R.string.gestion_plato_eliminar_dialog_message),
+            onPositiveClick = {
+                viewModel.eliminarPlato(plato)
+            }).show(childFragmentManager, "Eliminar Plato")
+    }
 }

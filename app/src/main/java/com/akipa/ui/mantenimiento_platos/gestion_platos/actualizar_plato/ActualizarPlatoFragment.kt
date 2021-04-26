@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.akipa.R
 import com.akipa.databinding.FragmentActualizarPlatoBinding
 import com.akipa.dto.request.ActualizarPlatoRequest
 import com.akipa.ui.mantenimiento_platos.agregar_plato.CAMERA_PERMISSION_CODE
 import com.akipa.ui.mantenimiento_platos.agregar_plato.IMAGEN_PLATO_REQUEST_CODE
+import com.akipa.ui.mantenimiento_platos.gestion_platos.GestionPlatoDialog
 import com.akipa.utils.Constantes
 import java.io.ByteArrayOutputStream
 
@@ -60,7 +62,12 @@ class ActualizarPlatoFragment : Fragment() {
         val foto =
             if (imagenFueCambiada) imagenToString(fotoBitmap) else Constantes.IMAGEN_NO_ACTUALIZADA
         val plato = ActualizarPlatoRequest(id, nombre, precio, descripcion, foto)
-        viewModel.actualizarPlato(plato)
+
+        GestionPlatoDialog(
+            message = getString(R.string.gestion_plato_actualizar_dialog_message),
+            onPositiveClick = {
+                viewModel.actualizarPlato(plato)
+            }).show(childFragmentManager, "Actualizar Plato")
     }
 
     private fun imagenToString(bitmap: Bitmap): String {

@@ -6,7 +6,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val HOST = "http://192.168.1.6"
+private const val HOST = "http://192.168.1.3"
 const val BASE_URL = "$HOST/bd-Alison/ws/"
 
 private val moshi = Moshi.Builder()

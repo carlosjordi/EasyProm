@@ -67,6 +67,11 @@
     <string name="gestion_pedido_estado">Estado: %1$s</string>
     <string name="no_platos_text">Aún no has agregado un plato a tu carrito</string>
     <string name="ir_lista_platos">Ir a listado de platos</string>
+    // dialogs de gestion de platos
+    <string name="gestion_plato_eliminar_dialog_message">¿Eliminar Plato?</string>
+    <string name="gestion_plato_actualizar_dialog_message">¿Actualizar plato?</string>
+    <string name="gestion_plato_dialog_positive_button">Sí</string>
+    <string name="gestion_plato_dialog_negative_button">No</string>
 
     <string-array name="akipa_locales">
         <item>Salaverry</item>
