@@ -33,21 +33,29 @@ class DetallePlatoViewModel(application: Application) : AndroidViewModel(applica
 
     fun incrementarCantidadPlato() {
         _cantidadPlatos.value?.let { cantidad ->
-            if (cantidad <= Constantes.CANTIDAD_PLATOS_MAXIMA)
-                _cantidadPlatos.value = _cantidadPlatos.value?.plus(1)
+            if (cantidad >= Constantes.CANTIDAD_PLATOS_MAXIMA)
+                return@let
+            _cantidadPlatos.value = _cantidadPlatos.value?.plus(1)
         }
     }
 
     fun reducirCantidadPlato() =
         _cantidadPlatos.value?.let { cantidad ->
-            if (cantidad >= Constantes.CANTIDAD_PLATOS_MINIMA)
-                _cantidadPlatos.value = _cantidadPlatos.value?.minus(1)
+            if (cantidad <= Constantes.CANTIDAD_PLATOS_MINIMA)
+                return@let
+            _cantidadPlatos.value = _cantidadPlatos.value?.minus(1)
         }
 
     fun agregarPlatoAlCarrito(plato: Plato) {
         coroutineScope.launch {
             val platoEnCarrito =
-                PlatoEnCarrito(plato.id, plato.nombre, plato.precio, _cantidadPlatos.value ?: 1, plato.urlImagen)
+                PlatoEnCarrito(
+                    plato.id,
+                    plato.nombre,
+                    plato.precio,
+                    _cantidadPlatos.value ?: 1,
+                    plato.urlImagen
+                )
             withContext(Dispatchers.IO) {
                 database.carritoDao.agregarPlatoAlCarrito(platoEnCarrito)
             }
