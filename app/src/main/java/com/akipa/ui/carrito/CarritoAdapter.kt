@@ -44,7 +44,7 @@ class PlatoEnCarritoDiffCallback : DiffUtil.ItemCallback<PlatoEnCarrito>() {
         oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: PlatoEnCarrito, newItem: PlatoEnCarrito): Boolean =
-        oldItem.cantidad == newItem.cantidad
+        oldItem == newItem
 }
 
 /**

@@ -10,9 +10,6 @@ import kotlinx.coroutines.*
 
 class CarritoViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
     private val database = AkipaLocalDatabase.getInstance(application.applicationContext)
 
     /**
@@ -31,33 +28,27 @@ class CarritoViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun incrementarCantidadPlato(platoEnCarrito: PlatoEnCarrito) {
-
         if (platoEnCarrito.cantidad >= Constantes.CANTIDAD_PLATOS_MAXIMA)
             return
 
         platoEnCarrito.cantidad += 1
-        coroutineScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             database.carritoDao.cambiarCantidadDePlatos(platoEnCarrito)
         }
     }
 
-    fun reducirCantidadPlato(platoEnCarrito: PlatoEnCarrito) = coroutineScope.launch {
+    fun reducirCantidadPlato(platoEnCarrito: PlatoEnCarrito) {
         if (platoEnCarrito.cantidad <= Constantes.CANTIDAD_PLATOS_MINIMA)
-            return@launch
+            return
 
         platoEnCarrito.cantidad -= 1
-        withContext(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             database.carritoDao.cambiarCantidadDePlatos(platoEnCarrito)
         }
     }
 
-    fun quitarPlato(platoEnCarrito: PlatoEnCarrito) = coroutineScope.launch(Dispatchers.IO) {
+    fun quitarPlato(platoEnCarrito: PlatoEnCarrito) = viewModelScope.launch(Dispatchers.IO) {
         database.carritoDao.quitarPlatoDelCarrito(platoEnCarrito)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
     /**
