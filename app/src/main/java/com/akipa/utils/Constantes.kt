@@ -21,6 +21,9 @@ object Constantes {
     const val ESTADO_PEDIDO_ACEPTADO = 1
     const val ESTADO_PEDIDO_RECHAZADO = 2
 
+    const val PUESTO_PERSONAL_ADMIN = "Admin"
+    const val PUESTO_PERSONAL_CAJERO = "Cajero"
+
     /**
      * Mantendrá info del personal logueado actualmente.
      * Si es que su valor es nulo significa que no hay sesión

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/agregarPlatoFragment"
+        android:icon="@drawable/ic_easyprom_logo_placeholder"
+        android:title="@string/menu_agregar_plato" />
+
+    <item
+        android:id="@+id/gestionPlatosFragment"
+        android:icon="@drawable/ic_easyprom_logo_placeholder"
+        android:title="@string/gestion_de_platos" />
+
+    <item
+        android:id="@+id/gestionPedidosFragment"
+        android:icon="@drawable/ic_easyprom_logo_placeholder"
+        android:title="@string/gestion_de_pedidos" />
+</menu>
