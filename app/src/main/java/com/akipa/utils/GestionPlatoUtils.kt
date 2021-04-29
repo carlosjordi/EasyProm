@@ -7,3 +7,5 @@ const val IMAGEN_PLATO_OPCION_CANCELAR = "Cancelar"
 
 // Titulo del dialogo que aparece cuando se solicita imagen para el plato
 const val IMAGEN_PLATO_TITULO = "Agregar Imagen"
+
+const val IMAGEN_PLATO_TITULO_ACTUALIZAR = "Actualizar Imagen"

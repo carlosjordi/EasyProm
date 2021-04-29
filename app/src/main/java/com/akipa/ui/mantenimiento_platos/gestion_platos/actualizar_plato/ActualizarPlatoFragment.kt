@@ -1,10 +1,13 @@
 package com.akipa.ui.mantenimiento_platos.gestion_platos.actualizar_plato
 
 import android.Manifest
-import android.app.Activity
+import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -19,10 +22,9 @@ import androidx.navigation.fragment.navArgs
 import com.akipa.R
 import com.akipa.databinding.FragmentActualizarPlatoBinding
 import com.akipa.dto.request.ActualizarPlatoRequest
-import com.akipa.ui.mantenimiento_platos.agregar_plato.CAMERA_PERMISSION_CODE
-import com.akipa.ui.mantenimiento_platos.agregar_plato.IMAGEN_PLATO_REQUEST_CODE
+import com.akipa.ui.mantenimiento_platos.agregar_plato.*
 import com.akipa.ui.mantenimiento_platos.gestion_platos.GestionPlatoDialog
-import com.akipa.utils.Constantes
+import com.akipa.utils.*
 import java.io.ByteArrayOutputStream
 
 class ActualizarPlatoFragment : Fragment() {
@@ -42,7 +44,7 @@ class ActualizarPlatoFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.plato = args.plato
         binding.editarPlatoBoton.setOnClickListener { actualizarPlato() }
-        binding.platoImagen.setOnClickListener { solicitarPermisoCamara() }
+        binding.platoImagen.setOnClickListener { seleccionarImagenParaPlato() }
 
         viewModel.platoActualizadoResultado.observe(viewLifecycleOwner) {
             if (it == Constantes.PLATO_ACTUALIZADO_MENSAJE_EXITOSO) {
@@ -78,18 +80,72 @@ class ActualizarPlatoFragment : Fragment() {
         }
     }
 
-    private fun solicitarPermisoCamara() {
-        if (!tienePermisoCamara()) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_CODE
-            )
-        } else {
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                startActivityForResult(it, IMAGEN_PLATO_REQUEST_CODE)
+    private fun seleccionarImagenParaPlato() {
+        val opciones = arrayOf(
+            IMAGEN_PLATO_OPCION_CAMARA,
+            IMAGEN_PLATO_OPCION_GALERIA,
+            IMAGEN_PLATO_OPCION_CANCELAR
+        )
+        mostrarOpcionesParaImagenPlato(opciones)
+    }
+
+    private fun mostrarOpcionesParaImagenPlato(opciones: Array<String>) {
+        AlertDialog.Builder(activity).apply {
+            setTitle(IMAGEN_PLATO_TITULO_ACTUALIZAR)
+            setItems(opciones) { dialog: DialogInterface, which: Int ->
+                when (opciones[which]) {
+                    IMAGEN_PLATO_OPCION_CAMARA -> solicitarPermiso(CAMERA_PERMISSION_CODE)
+                    IMAGEN_PLATO_OPCION_GALERIA -> solicitarPermiso(GALLERY_PERMISSION_CODE)
+                    IMAGEN_PLATO_OPCION_CANCELAR -> dialog.dismiss()
+                }
+            }
+        }.show()
+    }
+
+    private fun solicitarPermiso(cual: Int) {
+        when (cual) {
+            CAMERA_PERMISSION_CODE -> {
+                if (tienePermisoCamara()) {
+                    abrirCamara()
+                    return
+                }
+                pedirPermisoCamara()
+            }
+            GALLERY_PERMISSION_CODE -> {
+                if (tienePermisoGaleria()) {
+                    abrirGaleria()
+                    return
+                }
+                pedirPermisoGaleria()
             }
         }
+    }
+
+    private fun abrirCamara() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
+            startActivityForResult(it, CAMERA_REQUEST_CODE)
+        }
+    }
+
+    private fun abrirGaleria() {
+        Intent(Intent.ACTION_PICK).also {
+            it.type = "image/*"
+            startActivityForResult(it, GALLERY_REQUEST_CODE)
+        }
+    }
+
+    private fun pedirPermisoCamara() {
+        requestPermissions(
+            arrayOf(Manifest.permission.CAMERA),
+            IMAGEN_PLATO_REQUEST_CODE
+        )
+    }
+
+    private fun pedirPermisoGaleria() {
+        requestPermissions(
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            IMAGEN_PLATO_REQUEST_CODE
+        )
     }
 
     private fun tienePermisoCamara(): Boolean =
@@ -98,25 +154,46 @@ class ActualizarPlatoFragment : Fragment() {
             Manifest.permission.CAMERA
         ) == PackageManager.PERMISSION_GRANTED
 
+    private fun tienePermisoGaleria(): Boolean =
+        ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.READ_EXTERNAL_STORAGE
+        ) == PackageManager.PERMISSION_GRANTED
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_PERMISSION_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Intent(MediaStore.ACTION_IMAGE_CAPTURE).also {
-                startActivityForResult(it, IMAGEN_PLATO_REQUEST_CODE)
+        if (requestCode == IMAGEN_PLATO_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            when (permissions[0]) {
+                Manifest.permission.CAMERA -> abrirCamara()
+                Manifest.permission.READ_EXTERNAL_STORAGE -> abrirGaleria()
             }
         }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == IMAGEN_PLATO_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            fotoBitmap = data?.extras?.get("data") as Bitmap
-            binding.platoImagen.setImageBitmap(fotoBitmap)
-            imagenFueCambiada = true
+        if (data != null && resultCode == RESULT_OK) {
+            when (requestCode) {
+                CAMERA_REQUEST_CODE -> setearImagenDesdeCamara(data)
+                GALLERY_REQUEST_CODE -> setearImagenDesdeGaleria(data)
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun setearImagenDesdeCamara(data: Intent) {
+        fotoBitmap = data.extras?.get("data") as Bitmap
+        binding.platoImagen.setImageBitmap(fotoBitmap)
+        imagenFueCambiada = true
+    }
+
+    private fun setearImagenDesdeGaleria(data: Intent) {
+        val input = data.data?.let { requireActivity().contentResolver.openInputStream(it) }
+        fotoBitmap = BitmapFactory.decodeStream(input)
+        binding.platoImagen.setImageBitmap(fotoBitmap)
+        imagenFueCambiada = true
     }
 }
