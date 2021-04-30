@@ -15,12 +15,14 @@ import com.akipa.entidades.toCabeceraPedido
 import com.akipa.ui.mantenimiento_platos.gestion_platos.GestionPlatoDialog
 import com.akipa.ui.pedidos.detalle.DetalleMisPedidosAdapter
 import com.akipa.utils.Constantes
+import com.akipa.utils.Constantes.PEDIDO_GESTIONADO
 
 class GestionPedidosFragment : Fragment() {
 
     private lateinit var binding: FragmentGestionPedidosBinding
     private val viewModel: GestionPedidosViewModel by viewModels()
     private var idPedido = -1
+    private lateinit var pedidoActual: CabeceraPedido
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,9 +34,12 @@ class GestionPedidosFragment : Fragment() {
 
         val adapter = GestionPedidosAdapter(GestionPedidosListener {
             idPedido = it.id
+            pedidoActual = it.toCabeceraPedido()
             viewModel.solicitarDetallePedido(idPedido)
-            viewModel.pedidoSeleccionado(it.toCabeceraPedido())
-            activarCajaComentarioYBotonesUI()
+            viewModel.pedidoSeleccionado(pedidoActual)
+            if (viewModel.gestionado.value != true) {
+                activarCajaComentarioYBotonesUI()
+            }
         })
         binding.listaPedidos?.adapter = adapter
 
@@ -43,6 +48,18 @@ class GestionPedidosFragment : Fragment() {
         }
         viewModel.cabeceraPedido.observe(viewLifecycleOwner) {
             actualizarUI(it)
+            if (it.gestionado == PEDIDO_GESTIONADO) {
+                pedidoGestionado()
+                binding.pedidoGestionadoImage?.isVisible = true
+            }
+        }
+        viewModel.gestionado.observe(viewLifecycleOwner) {
+            if (it) {
+                pedidoGestionado()
+                binding.pedidoGestionadoImage?.isVisible = true
+            } else {
+                binding.pedidoGestionadoImage?.isVisible = false
+            }
         }
 
         val detalleAdapter = DetalleMisPedidosAdapter()
@@ -72,6 +89,7 @@ class GestionPedidosFragment : Fragment() {
             message = getString(R.string.gestion_pedido_confirmar_negativo),
             onPositiveClick = {
                 viewModel.gestionarPedido(request)
+                viewModel.pedidoSeleccionado(pedidoActual.copy(gestionado = PEDIDO_GESTIONADO))
             }).show(childFragmentManager, "Confirmar Rechazo")
     }
 
@@ -85,6 +103,7 @@ class GestionPedidosFragment : Fragment() {
             message = getString(R.string.gestion_pedido_confirmar_positivo),
             onPositiveClick = {
                 viewModel.gestionarPedido(request)
+                viewModel.pedidoSeleccionado(pedidoActual.copy(gestionado = PEDIDO_GESTIONADO))
             }).show(childFragmentManager, "Confirmar Acepto")
     }
 
@@ -92,6 +111,12 @@ class GestionPedidosFragment : Fragment() {
         binding.tilObservacion?.isVisible = true
         binding.aceptarPedidoBoton?.isVisible = true
         binding.rechazarPedidoBoton?.isVisible = true
+    }
+
+    private fun pedidoGestionado() {
+        binding.tilObservacion?.isVisible = false
+        binding.aceptarPedidoBoton?.isVisible = false
+        binding.rechazarPedidoBoton?.isVisible = false
     }
 
     private fun actualizarUI(pedido: CabeceraPedido) {

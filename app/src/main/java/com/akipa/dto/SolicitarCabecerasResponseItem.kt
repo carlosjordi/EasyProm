@@ -9,5 +9,6 @@ data class SolicitarCabecerasResponseItem(
     val local: String,
     val observacion: String?,
     val referencia: String,
-    val tipo_pedido: Int // 1 recojo en tienda | 2 delivery
+    val tipo_pedido: Int, // 1 recojo en tienda | 2 delivery
+    val gestionado: Int? // 0 no gestionado | 1 gestionado
 )

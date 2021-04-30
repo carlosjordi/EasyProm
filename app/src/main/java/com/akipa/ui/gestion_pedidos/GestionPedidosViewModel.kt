@@ -6,6 +6,7 @@ import com.akipa.dto.SolicitarCabecerasResponseItem
 import com.akipa.dto.request.GestionarPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.network.AkipaAPI
+import com.akipa.utils.Constantes.PEDIDO_GESTIONADO
 import com.akipa.utils.obtenerCosteTotal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,6 +19,10 @@ class GestionPedidosViewModel : ViewModel() {
 
     private val _cabeceraPedido = MutableLiveData<CabeceraPedido>()
     val cabeceraPedido: LiveData<CabeceraPedido> = _cabeceraPedido
+
+    val gestionado = Transformations.map(_cabeceraPedido){
+        it.gestionado == PEDIDO_GESTIONADO
+    }
 
     private val _listaDetallePedido = MutableLiveData<List<Detalle>>()
     val listaDetallePedido: LiveData<List<Detalle>> = _listaDetallePedido

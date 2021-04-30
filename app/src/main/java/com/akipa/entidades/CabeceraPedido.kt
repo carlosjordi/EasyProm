@@ -14,7 +14,8 @@ data class CabeceraPedido(
     val local: String,
     val observacion: String?,
     val estado: Int, // 0 en espera | 1 aceptado | 2 rechazado
-    val tipo_pedido: Int // 1 recojo en tienda | 2 delivery
+    val tipo_pedido: Int, // 1 recojo en tienda | 2 delivery
+    val gestionado: Int? // 0 no gestionado | 1 gestionado
 ) : Parcelable
 
 fun SolicitarCabecerasResponseItem.toCabeceraPedido(): CabeceraPedido =
@@ -27,5 +28,6 @@ fun SolicitarCabecerasResponseItem.toCabeceraPedido(): CabeceraPedido =
         local,
         observacion,
         estado,
-        tipo_pedido
+        tipo_pedido,
+        gestionado
     )

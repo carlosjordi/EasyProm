@@ -77,6 +77,18 @@
             app:layout_constraintTop_toBottomOf="@+id/hora_referencia_pedido"
             tools:text="Estado: En Espera" />
 
+        <ImageView
+            android:id="@+id/pedido_gestionado_image"
+            android:layout_width="480dp"
+            android:layout_height="400dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gestionado"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/secondGuideline"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toBottomOf="@id/estado_pedido" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lista_detalle_pedido"
             android:layout_width="0dp"
