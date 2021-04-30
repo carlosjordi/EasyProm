@@ -73,6 +73,10 @@
     <string name="gestion_plato_dialog_positive_button">Sí</string>
     <string name="gestion_plato_dialog_negative_button">No</string>
 
+    //dialog gestion pedidos
+    <string name="gestion_pedido_confirmar_positivo">Confirmar</string>
+    <string name="gestion_pedido_confirmar_negativo">Confirmar</string>
+
     <string-array name="akipa_locales">
         <item>Salaverry</item>
         <item>Chacarilla</item>

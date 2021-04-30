@@ -12,6 +12,7 @@ import com.akipa.databinding.FragmentGestionPedidosBinding
 import com.akipa.dto.request.GestionarPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.entidades.toCabeceraPedido
+import com.akipa.ui.mantenimiento_platos.gestion_platos.GestionPlatoDialog
 import com.akipa.ui.pedidos.detalle.DetalleMisPedidosAdapter
 import com.akipa.utils.Constantes
 
@@ -63,7 +64,11 @@ class GestionPedidosFragment : Fragment() {
             binding.observacionInput?.text.toString(),
             Constantes.ESTADO_PEDIDO_RECHAZADO
         )
-        viewModel.gestionarPedido(request)
+        GestionPlatoDialog(
+            message = getString(R.string.gestion_pedido_confirmar_negativo),
+            onPositiveClick = {
+                viewModel.gestionarPedido(request)
+            }).show(childFragmentManager, "Confirmar Rechazo")
     }
 
     private fun aceptarPedido() {
@@ -72,7 +77,11 @@ class GestionPedidosFragment : Fragment() {
             binding.observacionInput?.text.toString(),
             Constantes.ESTADO_PEDIDO_ACEPTADO
         )
-        viewModel.gestionarPedido(request)
+        GestionPlatoDialog(
+            message = getString(R.string.gestion_pedido_confirmar_positivo),
+            onPositiveClick = {
+                viewModel.gestionarPedido(request)
+            }).show(childFragmentManager, "Confirmar Acepto")
     }
 
     private fun activarCajaComentarioYBotonesUI() {
