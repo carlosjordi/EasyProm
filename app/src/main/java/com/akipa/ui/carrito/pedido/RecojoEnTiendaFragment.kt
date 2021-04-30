@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -63,6 +64,23 @@ class RecojoEnTiendaFragment : Fragment() {
         val idSolicitante = UniqueIdentifier.getUniqueIdentifier()
         val fechaRecojo = binding.seleccionarFechaValor.text.toString()
         val horaRecojo = binding.seleccionarHoraValor.text.toString()
+
+        if (horaRecojo.isBlank()) {
+            Toast.makeText(
+                context,
+                getString(R.string.realizar_pedido_mensaje_validacion_hora),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (fechaRecojo.isBlank()) {
+            Toast.makeText(
+                context,
+                getString(R.string.realizar_pedido_mensaje_validacion_fecha),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
 
         val pedidoEnTienda =
             RegistrarPedidoRecojoTiendaRequest(idLocal, idSolicitante, fechaRecojo, horaRecojo)

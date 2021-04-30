@@ -79,6 +79,12 @@
 
     <string name="gestion_pedido_coste_total">Total: %1$s</string>
 
+    // mensajes de validacion a la hora de realizar pedido
+    <string name="realizar_pedido_mensaje_validacion_hora">Debe indicar una hora</string>
+    <string name="realizar_pedido_mensaje_validacion_fecha">Debe indicar una fecha</string>
+    <string name="realizar_pedido_mensaje_validacion_direccion">Debe indicar una dirección</string>
+    <string name="realizar_pedido_mensaje_validacion_referencia">Debe indicar una referencia</string>
+
     <string-array name="akipa_locales">
         <item>Salaverry</item>
         <item>Chacarilla</item>
