@@ -1,14 +1,12 @@
 package com.akipa.ui.gestion_pedidos
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.akipa.dto.Detalle
 import com.akipa.dto.SolicitarCabecerasResponseItem
 import com.akipa.dto.request.GestionarPedidoRequest
 import com.akipa.entidades.CabeceraPedido
 import com.akipa.network.AkipaAPI
+import com.akipa.utils.obtenerCosteTotal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,6 +21,10 @@ class GestionPedidosViewModel : ViewModel() {
 
     private val _listaDetallePedido = MutableLiveData<List<Detalle>>()
     val listaDetallePedido: LiveData<List<Detalle>> = _listaDetallePedido
+
+    val costeTotal = Transformations.map(_listaDetallePedido) {
+        it.obtenerCosteTotal()
+    }
 
     init {
         solicitarCabecerasPedidos()

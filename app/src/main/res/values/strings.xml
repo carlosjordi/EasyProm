@@ -77,6 +77,8 @@
     <string name="gestion_pedido_confirmar_positivo">Confirmar</string>
     <string name="gestion_pedido_confirmar_negativo">Confirmar</string>
 
+    <string name="gestion_pedido_coste_total">Total: %1$s</string>
+
     <string-array name="akipa_locales">
         <item>Salaverry</item>
         <item>Chacarilla</item>

@@ -51,6 +51,10 @@ class GestionPedidosFragment : Fragment() {
         viewModel.listaDetallePedido.observe(viewLifecycleOwner) {
             detalleAdapter.submitList(it)
         }
+        viewModel.costeTotal.observe(viewLifecycleOwner) {
+            binding.costeTotalText?.text =
+                getString(R.string.gestion_pedido_coste_total, viewModel.costeTotal.value)
+        }
 
         binding.aceptarPedidoBoton?.setOnClickListener { aceptarPedido() }
         binding.rechazarPedidoBoton?.setOnClickListener { rechazarPedido() }

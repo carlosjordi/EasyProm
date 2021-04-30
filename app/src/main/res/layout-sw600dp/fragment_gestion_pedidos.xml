@@ -88,6 +88,18 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_detalle_mis_pedidos" />
 
+        <TextView
+            android:id="@+id/coste_total_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:textAlignment="textEnd"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/secondGuideline"
+            tools:text="Total: S/10.57" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/secondGuideline"
             android:layout_width="wrap_content"
