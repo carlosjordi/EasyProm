@@ -85,6 +85,12 @@
     <string name="realizar_pedido_mensaje_validacion_direccion">Debe indicar una dirección</string>
     <string name="realizar_pedido_mensaje_validacion_referencia">Debe indicar una referencia</string>
 
+    // mensajes de validacion para agregar plato
+    <string name="agregar_plato_mensaje_validacion_nombre">Debe indicar un nombre</string>
+    <string name="agregar_plato_mensaje_validacion_precio">Debe indicar un precio</string>
+    <string name="agregar_plato_mensaje_validacion_descripcion">Debe indicar una descripcion</string>
+    <string name="agregar_plato_mensaje_validacion_foto">Debe indicar una foto</string>
+
     <string-array name="akipa_locales">
         <item>Salaverry</item>
         <item>Chacarilla</item>

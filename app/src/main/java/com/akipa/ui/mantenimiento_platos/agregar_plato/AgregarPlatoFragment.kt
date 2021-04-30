@@ -14,10 +14,12 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.akipa.R
 import com.akipa.databinding.FragmentAgregarPlatoBinding
 import com.akipa.dto.request.RegistrarPlatoRequest
 import com.akipa.utils.*
@@ -35,7 +37,7 @@ class AgregarPlatoFragment : Fragment() {
 
     private lateinit var binding: FragmentAgregarPlatoBinding
     private val viewModel: AgregarPlatoViewModel by viewModels()
-    private lateinit var fotoBitmap: Bitmap
+    private var fotoBitmap: Bitmap? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,12 +59,44 @@ class AgregarPlatoFragment : Fragment() {
         return binding.root
     }
 
-    // TODO: validaciones pendientes
     private fun agregarPlato() {
         val nombre = binding.nombrePlatoInput.text.toString()
-        val precio = binding.precioPlatoInput.text.toString().toDouble()
+        val precio = binding.precioPlatoInput.text.toString().toDoubleOrNull()
         val descripcion = binding.descripcionPlatoInput.text.toString()
-        val foto = imagenToString(fotoBitmap)
+
+        if (nombre.isBlank()) {
+            Toast.makeText(
+                context,
+                getString(R.string.agregar_plato_mensaje_validacion_nombre),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (precio == null) {
+            Toast.makeText(
+                context,
+                getString(R.string.agregar_plato_mensaje_validacion_precio),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (descripcion.isBlank()) {
+            Toast.makeText(
+                context,
+                getString(R.string.agregar_plato_mensaje_validacion_descripcion),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        if (fotoBitmap == null) {
+            Toast.makeText(
+                context,
+                getString(R.string.agregar_plato_mensaje_validacion_foto),
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+        val foto = imagenToString(fotoBitmap!!)
 
         val plato = RegistrarPlatoRequest(nombre, precio, descripcion, foto)
         viewModel.registrarPlato(plato)
